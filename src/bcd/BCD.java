@@ -20,7 +20,8 @@ import javax.crypto.SecretKey;
 public class BCD {
 
     public static void main(String[] args) throws Exception {
-
+        // THIS IS SEAN COMMENT
+        
         DataIO.readFromFile();
 //  Test add and read to file - Working
 //        DataIO.allPatient.add(new Patient("1","1","1","1","1","1","1"));
@@ -92,7 +93,7 @@ BlockIO.readFromBlockchain();
 //    
     
 //// Add to blockchain - Working, but pending encrypte
-// BlockIO.addNewBlock("111213141234","444342414321","MedicalHistory",encrypted, signedMsg);    
+ BlockIO.addNewBlock("111213141234","444342414321","MedicalHistory",encrypted, signedMsg);    
  // -- End to add
 
 
