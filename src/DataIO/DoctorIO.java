@@ -1,10 +1,20 @@
 package DataIO;
 
+import Classes.Doctor;
+import static DataIO.DataIO.allDoctor;
 import bcd.RSAKeyPair;
 import java.util.Base64;
 
 public class DoctorIO {
     // function checkUsername -> IC
+    public static Doctor checkDoctor(String doctorID){ 
+        Doctor found = null;
+        for (Doctor d : allDoctor){
+            found = doctorID.equals(d.getDoctorID()) ? d : null;
+            break;
+        }
+       return found;
+    }
     
     // addNewDoctor
     

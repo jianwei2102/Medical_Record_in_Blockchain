@@ -5,6 +5,7 @@
 package bcd;
 
 import Classes.Credential;
+import Classes.Validation;
 import javax.swing.JOptionPane;
 
 /**
@@ -102,25 +103,26 @@ public class Login extends javax.swing.JPanel {
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
         String ic = ICTextField.getText();
         String password = new String(PasswordField.getPassword());
+        Validation validateID = DataIO.CredentialIO.validateUserID(ic);
+        Validation validatePassword = DataIO.CredentialIO.validatePassword(password);
         
-        if (ic.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Add your IC", "Missing Value", JOptionPane.WARNING_MESSAGE);
+        if (!validateID.isValid()) {
+            JOptionPane.showMessageDialog(null, validateID.getMessage(), validateID.getMessageType(), JOptionPane.WARNING_MESSAGE);
         }
-        else if (password.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Add your password", "Missing Value", JOptionPane.WARNING_MESSAGE);
+        else if (!validatePassword.isValid()) {
+            JOptionPane.showMessageDialog(null, validatePassword.getMessage(), validatePassword.getMessageType(), JOptionPane.WARNING_MESSAGE);
         }
         else {
             Credential credential = DataIO.CredentialIO.validateCredential(ic, password);
             if (credential != null) {
-                if (null == credential.getRole()) {
-                    JOptionPane.showMessageDialog(null, "Login failed due to unknown user role", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-                else switch (credential.getRole()) {
+                switch (credential.getRole()) {
                     case "patient":
                         // Pass patient class to home page
+                        bcd.BCD.loginPatient = DataIO.PatientIO.checkPatient(credential.getUserID());
                         break;
                     case "doctor":
                         // Pass doctor class to home page
+                        bcd.BCD.loginDoctor = DataIO.DoctorIO.checkDoctor(credential.getUserID());
                         break;
                     default:
                         JOptionPane.showMessageDialog(null, "Login failed due to unknown user role", "Error", JOptionPane.ERROR_MESSAGE);

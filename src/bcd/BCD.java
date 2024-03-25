@@ -18,7 +18,8 @@ import java.util.Scanner; // Import the Scanner class to read text files
 import javax.crypto.SecretKey;
 
 public class BCD {
-
+    public static Patient loginPatient = null;
+    public static Doctor loginDoctor = null;
     public static void main(String[] args) throws Exception {
         // THIS IS SEAN COMMENT
         
