@@ -3,13 +3,10 @@ package Classes;
 import java.util.ArrayList;
 
 public class HealthRecord {
-// private int patientID; - not require anymore (as this store under PatientIO.checkUsername(ID).getMyHealthRecord() )
-// private int doctorID; - inside the content already
-    
-// Unsure this 'content', 'category'
-//private String category;
-//private String content; // Call its own class -> to string. eg. VitalSign.toSting() < ?; Ans: Yes, use to encrypt
-    
+    // Explaination -- to remove
+    // private int patientID; - not require anymore (as this store under PatientIO.checkUsername(ID).getMyHealthRecord() )
+    // private int doctorID; - inside the content already
+
     // To add -> BloodTest newTest = new BloodTest(...); this.bloodTests.add(newTest);
     private final ArrayList<UrineTest> urineTests;
     private final ArrayList<BloodTest> bloodTests;
@@ -21,10 +18,10 @@ public class HealthRecord {
 
     
     // inside the content also
-//    private final String diagnosis;
-//    private final String consultationNotes;
-//    private final LocalDate date;
-//    private final LocalTime time;
+//    private final String diagnosis; - Doesnt exist
+//    private final String consultationNotes; - Doesnt exist
+//    private final String date;
+//    private final String time;
 
     public HealthRecord() {
         this.bloodTests = new ArrayList<>();

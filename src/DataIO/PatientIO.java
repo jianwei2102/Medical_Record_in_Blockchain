@@ -72,16 +72,6 @@ public class PatientIO {
         }
         return v;
     }
-//    
-//    public static boolean ValidateUsername(String userInfo[]){
-//        User validUser = userIO.checkUsername(userInfo[0]);
-//            if (validUser != null) {
-//                JOptionPane.showMessageDialog(null, "This username is already been taken. Please enter another username", "Error", JOptionPane.ERROR_MESSAGE); // Display error message                              
-//                return false;
-//            } 
-//            return true;
-//    }
-    
     
     public static void addNewPatient(String ic, String name, String dob, String gender,
             String address, String contact, String emergencyContact){

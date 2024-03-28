@@ -13,7 +13,7 @@ public class Vaccination {
     private final String addedBy;
     private final String doctorPubKey;
     
-    // Constructor
+    // Constructor for Gson - Java object
     public Vaccination(String dateOfVaccination, String typesOfImmunizations, 
             double dosesAdministered, String date, String time, String doctorID, 
             String doctorPubKey) {
@@ -26,6 +26,7 @@ public class Vaccination {
         this.doctorPubKey = doctorPubKey;
     }
     
+    // Constructor for new record
     public Vaccination(String dateOfVaccination, String typesOfImmunizations, 
             double dosesAdministered, String doctorID) throws Exception {
         this.dateOfVaccination = dateOfVaccination;

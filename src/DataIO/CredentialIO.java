@@ -16,6 +16,19 @@ public class CredentialIO {
         return found;
     }
     
+    public static Validation validateExist(String userID) {
+        Validation v = new Validation(true, "", "");
+        for (Credential credential : allCredential) {
+            if (credential.getUserID().equals(userID)) {
+                v.setValid(false);
+                v.setMessage("This user already exists");
+                v.setMessageType("Invalid Input");
+                break;
+            }
+        }
+        return v;
+    }
+        
     public static Validation validateUserID(String userID) {
         Validation v = new Validation(true, "", "");
         if (userID.isEmpty()) {
@@ -42,19 +55,6 @@ public class CredentialIO {
             v.setValid(false);
             v.setMessage("Password should be 4 to 16 characters only");
             v.setMessageType("Invalid Input");
-        }
-        return v;
-    }
-    
-    public static Validation validateExist(String userID) {
-        Validation v = new Validation(true, "", "");
-        for (Credential credential : allCredential) {
-            if (credential.getUserID().equals(userID)) {
-                v.setValid(false);
-                v.setMessage("This user already exists");
-                v.setMessageType("Invalid Input");
-                break;
-            }
         }
         return v;
     }

@@ -5,7 +5,6 @@ import Classes.Patient;
 import Classes.Doctor;
 import DataIO.DataIO;
 import DataIO.BlockIO;
-import DataIO.DoctorIO;
 import DataIO.PermissionIO; // To remove
 import DataIO.HealthRecordIO; // To remove
 import UIUX.Login;

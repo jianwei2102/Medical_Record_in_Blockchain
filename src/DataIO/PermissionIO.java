@@ -26,20 +26,11 @@ public class PermissionIO {
         // Else?
     }
     
-    // Remove permission -- Working GPT
+    // Remove permission
     public static void removePermission(String patientID, String doctorID){
         if(checkPermission(patientID, doctorID)) {
             allPermission.removeIf(p -> p.getPatientID().equals(patientID) && p.getDoctorID().equals(doctorID));
             DataIO.writeToFile();
-//            Iterator<Permission> iterator = allPermission.iterator();
-//            while (iterator.hasNext()) {
-//                Permission p = iterator.next();
-//                if (p.getPatientID().equals(patientID) && p.getDoctorID().equals(doctorID)) {
-//                    iterator.remove(); // Remove the permission
-//                    DataIO.writeToFile();
-//                    return;
-//                }
-//            }
         }
         // Else?
     }

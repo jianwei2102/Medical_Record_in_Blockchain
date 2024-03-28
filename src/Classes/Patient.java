@@ -2,9 +2,9 @@ package Classes;
 
 public class Patient {
     // Need final? modifiable?
-    private String patientID; // could start with 00
+    private String patientID;
     private String name;
-    private String dob; // change from age ; "maybe" can use local date 
+    private String dob;
     private String gender;
     private String address;
     private String contact;

@@ -30,8 +30,7 @@ public class UrineTest {
     private final String addedBy;
     private final String doctorPubKey;
     
-    // Constructor
-
+    // Constructor for Gson - Java object
     public UrineTest(String urineColor, String urineClarity, double urineSpecificGravity, 
             double urinePH, String urineProtein, String urineGlucose, String urineKetones, 
             String urineBilirubin, String urineBlood, String urineLeukocytes, String urineNitrites, 
@@ -64,6 +63,7 @@ public class UrineTest {
         this.doctorPubKey = doctorPubKey;
     }
     
+    // Constructor for new record
     public UrineTest(String urineColor, String urineClarity, double urineSpecificGravity, 
             double urinePH, String urineProtein, String urineGlucose, String urineKetones, 
             String urineBilirubin, String urineBlood, String urineLeukocytes, String urineNitrites, 

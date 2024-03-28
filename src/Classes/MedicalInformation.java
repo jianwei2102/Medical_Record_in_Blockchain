@@ -15,7 +15,7 @@ public class MedicalInformation {
     private final String addedBy;
     private final String doctorPubKey;
     
-    // Constructor
+    // Constructor for Gson - Java object
     public MedicalInformation(String prescriptionMedications, String dosages, 
             String frequencyOfUse, String mealRequirement, String treatmentGoal, 
             String date, String time, String doctorID, String doctorPubKey) {
@@ -30,6 +30,7 @@ public class MedicalInformation {
         this.doctorPubKey = doctorPubKey;
     }
     
+    // Constructor for new record
     public MedicalInformation(String prescriptionMedications, String dosages, 
             String frequencyOfUse, String mealRequirement, String treatmentGoal, 
             String doctorID) throws Exception {

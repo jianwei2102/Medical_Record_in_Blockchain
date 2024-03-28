@@ -1,22 +1,19 @@
 package DataIO;
 
-import Classes.Patient;
-import Classes.MedicalHistory;
-// import Classes.*;  // Easier
+import Classes.*;
 import blockchain.Block;
 import blockchain.Blockchain;
 import blockchain.TransactionCollection;
 import com.google.gson.Gson;
 import java.io.File;
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.ArrayList; // Testing - to remove
 import java.util.LinkedList;
 
 public class BlockIO implements Serializable {
     private static final String masterFolder = "master";
     private static final String chainFile = masterFolder + "/chain.bin";
     
-    // New -> Genesis -> direct add
     public static void addNewBlock(String patientID, String doctorID, String category,
         String encryptedRecord, String signatureMessage) {
         Blockchain bc = Blockchain.getInstance();
@@ -24,7 +21,7 @@ public class BlockIO implements Serializable {
         // If the blockchain doesn't exist
         if(!new File(masterFolder).exists()){
            new File(masterFolder).mkdir();
-           /* Create genesis block/ first block */
+           // Create genesis block/ first block
            bc.genesis();
         }
         
@@ -47,6 +44,8 @@ public class BlockIO implements Serializable {
         // Retrieve Blockchain data
         Blockchain bc = Blockchain.getInstance();
         LinkedList<Block> blockchain = bc.get();
+        
+        // Handle health record
         HealthRecordIO hrIO = HealthRecordIO.getInstance();
         
         for (Block block : blockchain){

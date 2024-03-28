@@ -30,7 +30,7 @@ public class BloodTest {
     private final String addedBy;
     private final String doctorPubKey;
     
-    // Constructor
+    // Constructor for Gson - Java object
     public BloodTest(double whiteBloodCellCount, double redBloodCellCount, double hemoglobinLevel, 
             double hematocritLevel, double plateletCount, double glucoseLevel, double creatinineLevel, 
             double bloodUreaNitrogenLevel, double calciumLevel, double potassiumLevel, double sodiumLevel,
@@ -64,6 +64,7 @@ public class BloodTest {
         this.doctorPubKey = doctorPubKey;
     }
     
+    // Constructor for new record
     public BloodTest(double whiteBloodCellCount, double redBloodCellCount, double hemoglobinLevel, 
             double hematocritLevel, double plateletCount, double glucoseLevel, double creatinineLevel, 
             double bloodUreaNitrogenLevel, double calciumLevel, double potassiumLevel, double sodiumLevel,

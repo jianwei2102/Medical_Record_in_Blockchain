@@ -9,9 +9,8 @@ import javax.crypto.Cipher;
 public class HealthRecordIO {
     static HealthRecordIO _instance;
     private static final String ALGORITHM = "AES";
-    private static Cipher cipher;
-    private static AESKey aesKey;
-    
+    private final Cipher cipher;
+    private final AESKey aesKey;
     
     private HealthRecordIO() throws Exception {
         cipher = Cipher.getInstance(ALGORITHM);
@@ -25,7 +24,7 @@ public class HealthRecordIO {
         return _instance;
     }
     
-    public static String encryptRecord(String healthRecord) throws Exception {
+    public String encryptRecord(String healthRecord) throws Exception {
         // get AES Key
         Key key = aesKey.getAesKey();
         
@@ -38,7 +37,7 @@ public class HealthRecordIO {
         return cipherText;
     }
     
-    public static String decryptRecord(String cipherText) throws Exception {
+    public String decryptRecord(String cipherText) throws Exception {
         // get AES Key
         Key key = aesKey.getAesKey();
         
@@ -51,14 +50,14 @@ public class HealthRecordIO {
         return new String(dataBytes);
     }
     
-    public static String signTransaction(String encrypted) {
+    public String signTransaction(String encrypted) {
         byte[] signed = DigitalSignature.getSignature(encrypted, "944342414321");
         // Convert the byte array to a Base64 encoded string
         String signedMsg = Base64.getEncoder().encodeToString(signed);
         return signedMsg;
     }
     
-    public static boolean verifySignature(String encrypted, String signedMsg, String doctorID) {
+    public boolean verifySignature(String encrypted, String signedMsg, String doctorID) {
         byte[] signedByte =Base64.getDecoder().decode(signedMsg);
         boolean validationResult = DigitalSignature.isTextAndSignatureValid(encrypted, signedByte, doctorID);
         return validationResult;
