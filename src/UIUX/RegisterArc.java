@@ -1,27 +1,33 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package UIUX;
 
+import UIUX.LoginArc;
 import Classes.Credential;
 import Classes.Patient;
 import Classes.Validation;
 import static DataIO.DataIO.allCredential;
 import static DataIO.DataIO.allPatient;
+import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author xiuha
  */
-public class Register extends javax.swing.JFrame {
+public class RegisterArc extends javax.swing.JPanel {
 
+    private ButtonGroup btngrp;
     /**
      * Creates new form Register
      */
-    public Register() {
+    public RegisterArc() {
         initComponents();
+        btngrp = new ButtonGroup();
+        btngrp.add(GenderMaleRadioButton);
+        btngrp.add(GenderFemaleRadioButton);
     }
 
     /**
@@ -33,7 +39,7 @@ public class Register extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        RegistrationLabel = new javax.swing.JLabel();
+        PatientRegistrationLabel = new javax.swing.JLabel();
         ICLabel = new javax.swing.JLabel();
         ICTextField = new javax.swing.JTextField();
         NameLabel = new javax.swing.JLabel();
@@ -55,10 +61,8 @@ public class Register extends javax.swing.JFrame {
         RegisterButton = new javax.swing.JButton();
         LoginButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        RegistrationLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        RegistrationLabel.setText("Patient Registration");
+        PatientRegistrationLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        PatientRegistrationLabel.setText("Patient Registration");
 
         ICLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         ICLabel.setText("IC");
@@ -74,7 +78,6 @@ public class Register extends javax.swing.JFrame {
         DOBLabel.setText("Date of Birth");
 
         DOBTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        DOBTextField.setToolTipText("");
 
         GenderLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         GenderLabel.setText("Gender");
@@ -98,7 +101,7 @@ public class Register extends javax.swing.JFrame {
 
         ContactTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        EmergencyContactLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        EmergencyContactLabel.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         EmergencyContactLabel.setText("Emergency Contact");
 
         EmergencyContactTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -124,67 +127,64 @@ public class Register extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(DOBLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(DOBTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ContactLabel)
+                            .addComponent(AddressLabel))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(ContactTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(EmergencyContactLabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(EmergencyContactTextField))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(PasswordLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(RegisterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 612, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(AddressLabel)
+                            .addComponent(PatientRegistrationLabel)
+                            .addGap(129, 129, 129)
+                            .addComponent(LoginButton))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(ICLabel)
                             .addGap(18, 18, 18)
-                            .addComponent(jScrollPane1))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(ICLabel)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(ICTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(DOBLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(DOBTextField)))
+                            .addComponent(ICTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(NameLabel)
                                     .addGap(18, 18, 18)
-                                    .addComponent(NameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(NameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(GenderLabel)
                                     .addGap(18, 18, 18)
                                     .addComponent(GenderMaleRadioButton)
                                     .addGap(18, 18, 18)
-                                    .addComponent(GenderFemaleRadioButton))))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGap(187, 187, 187)
-                            .addComponent(RegistrationLabel)
-                            .addGap(125, 125, 125)
-                            .addComponent(LoginButton)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ContactLabel)
-                            .addComponent(PasswordLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(ContactTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(EmergencyContactLabel))
-                            .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(EmergencyContactTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(RegisterButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                                    .addComponent(GenderFemaleRadioButton))))))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(RegistrationLabel)
+                    .addComponent(PatientRegistrationLabel)
                     .addComponent(LoginButton))
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -202,7 +202,7 @@ public class Register extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(AddressLabel)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ContactLabel)
@@ -213,12 +213,10 @@ public class Register extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PasswordLabel)
                     .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(RegisterButton)
-                .addGap(27, 27, 27))
+                .addGap(29, 29, 29))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
@@ -242,30 +240,24 @@ public class Register extends javax.swing.JFrame {
         Validation validateExist = DataIO.CredentialIO.validateExist(ic);
         
         if (!validateID.isValid()) {
-            ICTextField.setText("");
             JOptionPane.showMessageDialog(null, validateID.getMessage(), validateID.getMessageType(), JOptionPane.WARNING_MESSAGE);
         }
         else if (!validateName.isValid()) {
-            NameTextField.setText("");
             JOptionPane.showMessageDialog(null, validateName.getMessage(), validateName.getMessageType(), JOptionPane.WARNING_MESSAGE);
         }
         else if (!validateGender.isValid()) {
             JOptionPane.showMessageDialog(null, validateGender.getMessage(), validateGender.getMessageType(), JOptionPane.WARNING_MESSAGE);
         }
         else if (!validateContact.isValid()) {
-            ContactTextField.setText("");
             JOptionPane.showMessageDialog(null, validateContact.getMessage(), validateContact.getMessageType(), JOptionPane.WARNING_MESSAGE);
         }
         else if (!validateEmergencyContact.isValid()) {
-            EmergencyContactTextField.setText("");
             JOptionPane.showMessageDialog(null, validateEmergencyContact.getMessage(), validateEmergencyContact.getMessageType(), JOptionPane.WARNING_MESSAGE);
         }
         else if (!validatePassword.isValid()) {
-            PasswordField.setText("");
             JOptionPane.showMessageDialog(null, validatePassword.getMessage(), validatePassword.getMessageType(), JOptionPane.WARNING_MESSAGE);
         }
         else if (!validateExist.isValid()) {
-            ICTextField.setText("");
             JOptionPane.showMessageDialog(null, validateExist.getMessage(), validateExist.getMessageType(), JOptionPane.WARNING_MESSAGE);
         }
         else {
@@ -273,53 +265,16 @@ public class Register extends javax.swing.JFrame {
             role = "patient";
             allCredential.add(new Credential(ic, password, role));
             allPatient.add(new Patient(ic, name, dob, gender, address, contact, emergencyContact));
-            Login login = new Login();
-            login.setVisible(true);
-            dispose();
         }
     }//GEN-LAST:event_RegisterButtonActionPerformed
 
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
         // TODO add your handling code here:
-        Login login = new Login();
+        LoginArc login = new LoginArc();
         login.setVisible(true);
-        dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_LoginButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Register().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AddressLabel;
@@ -340,8 +295,8 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JTextField NameTextField;
     private javax.swing.JPasswordField PasswordField;
     private javax.swing.JLabel PasswordLabel;
+    private javax.swing.JLabel PatientRegistrationLabel;
     private javax.swing.JButton RegisterButton;
-    private javax.swing.JLabel RegistrationLabel;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

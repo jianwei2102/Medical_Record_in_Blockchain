@@ -22,7 +22,7 @@ public class BCD {
         // Read data from off-chain data to memory
         DataIO.readFromFile();
         // Read data from on-chain data to memory
-        BlockIO.readFromBlockchain();
+//        BlockIO.readFromBlockchain();
 
 //        Credential
 //        Officer - admin;admin;3
