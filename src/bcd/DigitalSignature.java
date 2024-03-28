@@ -6,7 +6,7 @@ import java.security.PrivateKey;
 
 public class DigitalSignature {
     private static final String ALGORITHM = "SHA256WithRSA";
-    private Signature sig;
+    private static Signature sig;
     
     // Constructor
     public DigitalSignature() {
@@ -18,7 +18,7 @@ public class DigitalSignature {
     }
     
     // Digitally sign the encrypted Health Record before add to block
-    public byte[] getSignature(String encryptedRecord, String doctorID){
+    public static byte[] getSignature(String encryptedRecord, String doctorID){
         try {
             PrivateKey doctorPrivateKey = RSAKeyAccess.getPrivateKey("MyKeyPair/"+doctorID+"-PrivateKey");
             sig.initSign(doctorPrivateKey);
@@ -31,8 +31,7 @@ public class DigitalSignature {
     }
     
     // Check if the Medical Records is digitally signed by authentic doctor 
-    //(^- Please help to rephrase, I fail my grammar)
-    public boolean isTextAndSignatureValid(String encryptedRecord, byte[] signature, String doctorID) {
+    public static boolean isTextAndSignatureValid(String encryptedRecord, byte[] signature, String doctorID) {
         try {
             PublicKey doctorPublicKey = RSAKeyAccess.getPublicKey("MyKeyPair/"+doctorID+"-PublicKey");
             sig.initVerify(doctorPublicKey);

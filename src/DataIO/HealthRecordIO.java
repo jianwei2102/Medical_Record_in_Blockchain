@@ -1,21 +1,22 @@
 package DataIO;
 
 import bcd.AESKey;
+import bcd.DigitalSignature;
 import java.security.Key;
 import java.util.Base64;
 import javax.crypto.Cipher;
 
 public class HealthRecordIO {
-    private final Cipher cipher;
     private static final String ALGORITHM = "AES";
-    private final AESKey aesKey; //
+    private static Cipher cipher;
+    private static AESKey aesKey;
     
     public HealthRecordIO() throws Exception {
         cipher = Cipher.getInstance(ALGORITHM);
         aesKey =  new AESKey();
     }
     
-    public String encryptRecord(String healthRecord) throws Exception {
+    public static String encryptRecord(String healthRecord) throws Exception {
         // get AES Key
         Key key = aesKey.getAesKey();
         
@@ -28,7 +29,7 @@ public class HealthRecordIO {
         return cipherText;
     }
     
-    public String decryptRecord(String cipherText) throws Exception {
+    public static String decryptRecord(String cipherText) throws Exception {
         // get AES Key
         Key key = aesKey.getAesKey();
         
@@ -39,5 +40,18 @@ public class HealthRecordIO {
         // decrypt
         byte[] dataBytes = cipher.doFinal(cipherBytes);
         return new String(dataBytes);
+    }
+    
+    public static String signTransaction(String encrypted) {
+        byte[] signed = DigitalSignature.getSignature(encrypted, "944342414321");
+        // Convert the byte array to a Base64 encoded string
+        String signedMsg = Base64.getEncoder().encodeToString(signed);
+        return signedMsg;
+    }
+    
+    public static boolean verifySignature(String encrypted, String signedMsg, String doctorID) {
+        byte[] signedByte =Base64.getDecoder().decode(signedMsg);
+        boolean validationResult = DigitalSignature.isTextAndSignatureValid(encrypted, signedByte, doctorID);
+        return validationResult;
     }
 }

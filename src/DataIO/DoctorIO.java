@@ -6,7 +6,6 @@ import bcd.RSAKeyPair;
 import java.util.Base64;
 
 public class DoctorIO {
-    // function checkUsername -> IC
     public static Doctor checkDoctor(String doctorID){ 
         Doctor found = null;
         for (Doctor d : allDoctor){
@@ -17,9 +16,12 @@ public class DoctorIO {
     }
     
     // addNewDoctor
+//        DataIO.allDoctor.add(new Doctor("1","1","1","1","1","1"));
+//        creaeteKeyPair(id)
+//        DataIO.writeToFile();
     
-    // assume validation has been performed before this function, so it wont override the key, then gg
-    public static void testCreateKey(String doctorID) {
+    // assume validation on ID has been performed before this function, so it wont override the key, then gg
+    public static void createKeyPair(String doctorID) {
         RSAKeyPair.create();
 
         byte[] publicKey = RSAKeyPair.getPublicKey().getEncoded();

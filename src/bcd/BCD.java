@@ -1,107 +1,59 @@
 package bcd;
 
-import Classes.*;
-import DataIO.BlockIO;
+import Classes.MedicalHistory; // To remove
+import Classes.Patient;
+import Classes.Doctor;
 import DataIO.DataIO;
+import DataIO.BlockIO;
 import DataIO.DoctorIO;
-import DataIO.HealthRecordIO;
-import DataIO.PatientIO;
-import DataIO.PermissionIO;
-import blockchain.Block;
-import blockchain.Blockchain;
-import com.google.gson.GsonBuilder;
-import java.io.File;  // Import the File class
-import java.io.FileNotFoundException;  // Import this class to handle errors
-import java.util.Base64;
-import java.util.LinkedList;
-import java.util.Scanner; // Import the Scanner class to read text files
-import javax.crypto.SecretKey;
+import DataIO.PermissionIO; // To remove
+import DataIO.HealthRecordIO; // To remove
+import UIUX.Login;
+// Import ALL UIUX here
+import blockchain.Blockchain; // to remove
 
 public class BCD {
-    public static Patient loginPatient = null;
+    public static Login login;
+    
     public static Doctor loginDoctor = null;
+    public static Patient loginPatient = null;
+    
     public static void main(String[] args) throws Exception {
-        // THIS IS SEAN COMMENT
-        
+        // Read data from off-chain data to memory
         DataIO.readFromFile();
-//  Test add and read to file - Working
-//        DataIO.allPatient.add(new Patient("1","1","1","1","1","1","1"));
-//        DataIO.allDoctor.add(new Doctor("1","1","1","1","1","1"));
-//        DataIO.writeToFile();
-        
-       // UI/UX
+        // Read data from on-chain data to memory
+        BlockIO.readFromBlockchain();
+
 //        Credential
 //        Officer - admin;admin;3
 //        Patient - 111213141234;patient;1
 //        Docotr -  944342414321;doctor;2
 
-//        loginPage = new LoginPage();
-//        loginPage.setVisible(true);
-  
-
-
-// AES key - generate if no, and read if exist - Woriking
-//        AESKey test = new AESKey();
-//        SecretKey aesKey = test.getAesKey();
-//        String secretKeyString = Base64.getEncoder().encodeToString(aesKey.getEncoded());
-//        System.out.println( "Secret Key = "+ secretKeyString );
-
-
-// Generate Doc pub-pri key - Working
-//DoctorIO.testCreateKey("0123"); - pass the doc ic
-
-// Read from blockchain - Done, tested on medical history
-//Blockchain bc = Blockchain.getInstance();
-//bc.distribute();
-BlockIO.readFromBlockchain();
-
-
-// Decrypt from blockchain - done
-// Encrypt health record - done
+        login = new Login();
+        login.setVisible(true);
 
 
 
-// -- start of add (Select all from this section ctrl + /
-// Add new medical record (Pending verify the permission from patient)
-// Create responsive Content class -> encrypt it after toString() -> sign transaction -> add to block
-    MedicalHistory mH = new MedicalHistory("Peanuts", "Lisinopril", "Asthma", "Appendectomy", "Stroke and Heart disease","944342414321");
-//    System.out.println(mH.toString());
-    String mHRecord = mH.toString();
-    HealthRecordIO hrIO = new HealthRecordIO();
-    String encrypted = hrIO.encryptRecord(mHRecord);
-//    System.out.println(encrypted);
-//    String decrypted = hrIO.decryptRecord(encrypted);
-//    System.out.println(decrypted);
+// Display blockchain data in terminal  -- To remove
+//        Blockchain bc = Blockchain.getInstance();
+//        bc.distribute();
 
 
-// Digital signature 
-// Question do we want to put doctor id in the transaction
-    DigitalSignature dsig = new DigitalSignature();
-    byte[] signed = dsig.getSignature(encrypted, "944342414321");
-//    // Convert the byte array to a Base64 encoded string
-    String signedMsg = Base64.getEncoder().encodeToString(signed);
+// -- Adding new health reccord
+// boolean permission = PermissionIO.checkPermission("1", "2");
+// if (permission) {}
 //
-//    // Print the Base64 encoded string
-//    System.out.println(signedMsg);
-//    
-    
-//// verify the sign - Done
-//    // convert back before valify
-//    byte[] signed2 =Base64.getDecoder().decode(signedMsg);
-//    // Test true false (Add string after encrypted
-//    boolean validationResult = dsig.isTextAndSignatureValid(encrypted, signed2, "0123");
-//    System.out.println(validationResult);
-//    
-    
-//// Add to blockchain - Working, but pending encrypte
- BlockIO.addNewBlock("111213141234","444342414321","MedicalHistory",encrypted, signedMsg);    
- // -- End to add
-
-
-// Permission - Done
-//PermissionIO.addNewPermission("123", "123");
-
-//boolean permission = PermissionIO.checkPermission("1", "2");
-//System.out.println(permission);
+//// Create responsive Content class -> encrypt it after toString() -> sign transaction -> add to block
+//    MedicalHistory mH = new MedicalHistory("Peanuts", "Lisinopril", "Asthma", "Appendectomy", "Stroke and Heart disease","944342414321");
+//    String mHRecord = mH.toString();
+////    System.out.println(mHRecord);
+//    String encrypted = HealthRecordIO.encryptRecord(mHRecord);
+////    System.out.println(encrypted);
+//    String decrypted = HealthRecordIO.decryptRecord(encrypted);
+////    System.out.println(decrypted);
+//   
+////// Add to blockchain - Working, but pending encrypte
+// String signedMsg = HealthRecordIO.signTransaction(encrypted);
+// BlockIO.addNewBlock("111213141234","444342414321","MedicalHistory",encrypted, signedMsg);
     }
 }

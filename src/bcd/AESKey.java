@@ -27,6 +27,8 @@ public class AESKey {
 
     public SecretKey getAesKey() {
         return aesKey;
+//        To read in String
+//        Base64.getEncoder().encodeToString(aesKey.getEncoded())
     }
     
     private static SecretKey generateAESKey() {
@@ -49,7 +51,7 @@ public class AESKey {
     }
     
     private static void writeAESKeyToFile(SecretKey aesKey) {
-    // Write the AES key to the file
+        // Write the AES key to the file
         try (PrintWriter writer = new PrintWriter(fileName)) {
             writer.println(Base64.getEncoder().encodeToString(aesKey.getEncoded()));
         } catch (FileNotFoundException ex) {

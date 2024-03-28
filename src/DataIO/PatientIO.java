@@ -86,5 +86,6 @@ public class PatientIO {
     // Validate info
     
     // Add new patient
+//        DataIO.allPatient.add(new Patient("1","1","1","1","1","1","1"));
     // Call writeToFile whenever have new user added
 }
