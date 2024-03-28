@@ -7,13 +7,22 @@ import java.util.Base64;
 import javax.crypto.Cipher;
 
 public class HealthRecordIO {
+    static HealthRecordIO _instance;
     private static final String ALGORITHM = "AES";
     private static Cipher cipher;
     private static AESKey aesKey;
     
-    public HealthRecordIO() throws Exception {
+    
+    private HealthRecordIO() throws Exception {
         cipher = Cipher.getInstance(ALGORITHM);
-        aesKey =  new AESKey();
+        aesKey = AESKey.getInstance();
+    }
+    
+    static public HealthRecordIO getInstance() throws Exception {
+        if (_instance == null) {
+            _instance = new HealthRecordIO();
+        }
+        return _instance;
     }
     
     public static String encryptRecord(String healthRecord) throws Exception {

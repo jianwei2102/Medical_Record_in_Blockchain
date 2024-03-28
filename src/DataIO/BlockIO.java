@@ -47,6 +47,7 @@ public class BlockIO implements Serializable {
         // Retrieve Blockchain data
         Blockchain bc = Blockchain.getInstance();
         LinkedList<Block> blockchain = bc.get();
+        HealthRecordIO hrIO = HealthRecordIO.getInstance();
         
         for (Block block : blockchain){
             // Skip the genesis block
@@ -61,7 +62,7 @@ public class BlockIO implements Serializable {
                 // Change to switch case or if else also can 
                 if(block.getTranxList().getCategory().equals("MedicalHistory")){
                     // Decrypt ebt encrypted record
-                    String record = HealthRecordIO.decryptRecord(block.getTranxList().getEncryptedHealthRecord());
+                    String record = hrIO.decryptRecord(block.getTranxList().getEncryptedHealthRecord());
 //                    System.out.println(record);
                     
                     // Use Gson to deserialize the JSON string into a Java object

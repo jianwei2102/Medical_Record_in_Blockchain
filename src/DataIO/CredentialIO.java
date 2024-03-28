@@ -58,5 +58,9 @@ public class CredentialIO {
         }
         return v;
     }
-    // function checkUsername -> IC
+    
+    public static void addCredential(String ic, String password, String role){
+        allCredential.add(new Credential(ic, password, role));
+        DataIO.writeToFile();
+    }
 }

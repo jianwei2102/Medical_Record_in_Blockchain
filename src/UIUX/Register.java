@@ -7,8 +7,11 @@ package UIUX;
 import Classes.Credential;
 import Classes.Patient;
 import Classes.Validation;
+import DataIO.CredentialIO;
 import static DataIO.DataIO.allCredential;
 import static DataIO.DataIO.allPatient;
+import DataIO.PatientIO;
+import bcd.BCD;
 import javax.swing.JOptionPane;
 
 /**
@@ -269,12 +272,10 @@ public class Register extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, validateExist.getMessage(), validateExist.getMessageType(), JOptionPane.WARNING_MESSAGE);
         }
         else {
+            CredentialIO.addCredential(ic, password, "patient");
             gender = GenderMaleRadioButton.isSelected() ? "male" : "female";
-            role = "patient";
-            allCredential.add(new Credential(ic, password, role));
-            allPatient.add(new Patient(ic, name, dob, gender, address, contact, emergencyContact));
-            Login login = new Login();
-            login.setVisible(true);
+            PatientIO.addNewPatient(ic, name, dob, gender, address, contact, emergencyContact);
+            BCD.login.setVisible(true);
             dispose();
         }
     }//GEN-LAST:event_RegisterButtonActionPerformed

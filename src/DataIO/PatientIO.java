@@ -6,8 +6,7 @@ import static DataIO.DataIO.allPatient;
 import javax.swing.JRadioButton;
 
 public class PatientIO {
-    // function checkUsername -> IC
-//    // Check if the username exist in txt file and return the user record
+    // Check if the username exist in txt file and return the user record
     public static Patient checkPatient(String patientID){ 
         Patient found = null;
         for (Patient p : allPatient){
@@ -83,9 +82,10 @@ public class PatientIO {
 //            return true;
 //    }
     
-    // Validate info
     
-    // Add new patient
-//        DataIO.allPatient.add(new Patient("1","1","1","1","1","1","1"));
-    // Call writeToFile whenever have new user added
+    public static void addNewPatient(String ic, String name, String dob, String gender,
+            String address, String contact, String emergencyContact){
+        DataIO.allPatient.add(new Patient(ic, name, dob, gender, address, contact, emergencyContact));
+        DataIO.writeToFile();
+    }
 }

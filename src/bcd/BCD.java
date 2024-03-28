@@ -9,11 +9,13 @@ import DataIO.DoctorIO;
 import DataIO.PermissionIO; // To remove
 import DataIO.HealthRecordIO; // To remove
 import UIUX.Login;
+import UIUX.Register;
 // Import ALL UIUX here
 import blockchain.Blockchain; // to remove
 
 public class BCD {
     public static Login login;
+    public static Register register;
     
     public static Doctor loginDoctor = null;
     public static Patient loginPatient = null;
@@ -22,7 +24,7 @@ public class BCD {
         // Read data from off-chain data to memory
         DataIO.readFromFile();
         // Read data from on-chain data to memory
-//        BlockIO.readFromBlockchain();
+        BlockIO.readFromBlockchain();
 
 //        Credential
 //        Officer - admin;admin;3
@@ -31,7 +33,8 @@ public class BCD {
 
         login = new Login();
         login.setVisible(true);
-
+        
+        register = new Register();
 
 
 // Display blockchain data in terminal  -- To remove
