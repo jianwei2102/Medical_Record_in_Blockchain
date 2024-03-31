@@ -6,8 +6,8 @@ import java.time.LocalTime;
 
 public class Vaccination {
     private final String dateOfVaccination;
-    private final String typesOfImmunizations;
-    private final double dosesAdministered;
+    private final String typesOfImmunizations; // live attenuated, inactivated, toxoid, viral vector, DNA & RNA
+    private final double dosesAdministered; // 1, 2, 3
     private final String date; // < Not sure if require
     private final String time;
     private final String addedBy;

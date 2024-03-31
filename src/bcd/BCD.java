@@ -33,7 +33,6 @@ public class BCD {
         login.setVisible(true);
 
 
-
 // Display blockchain data in terminal  -- To remove
 //        Blockchain bc = Blockchain.getInstance();
 //        bc.distribute();

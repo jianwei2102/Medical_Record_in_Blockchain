@@ -5,13 +5,13 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class VitalSign {
-    private final int bloodPressure;
-    private final int heartRate;
-    private final int respiratoryRate;
-    private final double temperature;
+    private final int bloodPressure; // 60 to 120
+    private final int heartRate; // 60 to 100
+    private final int respiratoryRate; // 12 to 18
+    private final double temperature; // 36.1 to 37.2
     private final double height;
     private final double weight;
-    private final double bodyMassIndex;
+    private final double bodyMassIndex; // weight / (height / 100)^2
     private final String date;
     private final String time;
     private final String addedBy;

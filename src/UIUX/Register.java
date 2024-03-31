@@ -131,38 +131,36 @@ public class Register extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(AddressLabel)
-                            .addGap(18, 18, 18)
-                            .addComponent(jScrollPane1))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(ICLabel)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(ICTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(DOBLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(DOBTextField)))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(NameLabel)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(NameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(GenderLabel)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(GenderMaleRadioButton)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(GenderFemaleRadioButton))))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGap(187, 187, 187)
-                            .addComponent(RegistrationLabel)
-                            .addGap(125, 125, 125)
-                            .addComponent(LoginButton)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(AddressLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(ICLabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(ICTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(DOBLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(DOBTextField)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(NameLabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(NameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(GenderLabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(GenderMaleRadioButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(GenderFemaleRadioButton))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(RegistrationLabel)
+                        .addGap(125, 125, 125)
+                        .addComponent(LoginButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ContactLabel)
@@ -231,7 +229,7 @@ public class Register extends javax.swing.JFrame {
         String contact = ContactTextField.getText();
         String emergencyContact = EmergencyContactTextField.getText();
         String password = new String(PasswordField.getPassword());
-        String role;
+        String role = "patient";
         
         Validation validateID = DataIO.CredentialIO.validateUserID(ic);
         Validation validateName = DataIO.PatientIO.validateName(name);
@@ -270,9 +268,9 @@ public class Register extends javax.swing.JFrame {
         }
         else {
             gender = GenderMaleRadioButton.isSelected() ? "male" : "female";
-            role = "patient";
             allCredential.add(new Credential(ic, password, role));
             allPatient.add(new Patient(ic, name, dob, gender, address, contact, emergencyContact));
+            DataIO.DataIO.writeToFile();
             Login login = new Login();
             login.setVisible(true);
             dispose();

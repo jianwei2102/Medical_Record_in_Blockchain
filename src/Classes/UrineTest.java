@@ -5,26 +5,26 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class UrineTest {
-    private final String urineColor;
-    private final String urineClarity;
-    private final double urineSpecificGravity;
-    private final double urinePH;
-    private final String urineProtein;
-    private final String urineGlucose;
-    private final String urineKetones;
-    private final String urineBilirubin;
-    private final String urineBlood;
-    private final String urineLeukocytes;
-    private final String urineNitrites;
-    private final double urineCreatinine;
-    private final String urineAlbumin;
-    private final String urineMicroalbumin;
-    private final double urineOsmolality;
-    private final double urinePotassium;
-    private final double urineSodium;
-    private final double urineCalcium;
-    private final double urineMagnesium;
-    private final double urineUricAcid;
+    private final String urineColor; // clear, pale, dark yellow, orange, dark orange, dark brown, pink, green, white
+    private final String urineClarity; // clear, cloudy
+    private final double urineSpecificGravity; // 1.005 to 1.030
+    private final double urinePH; // 4.5 to 8.0
+    private final String urineProtein; // 0 to 14
+    private final String urineGlucose; // 0 to 0.8
+    private final String urineKetones; // 0.6 to 1.5
+    private final String urineBilirubin; // 1.7 to 5.1
+    private final String urineBlood; // 0 to 10
+    private final String urineLeukocytes; // 0 to 5
+    private final String urineNitrites; // positive, negative
+    private final double urineCreatinine; // 5.3 to 14
+    private final String urineAlbumin; // 20 to 310
+    private final String urineMicroalbumin; // 30 to 300
+    private final double urineOsmolality; // 50 to 1200
+    private final double urinePotassium; // 60 to 80
+    private final double urineSodium; // 40 to 220
+    private final double urineCalcium; // 2.5 to 7.5
+    private final double urineMagnesium; // 3 to 5
+    private final double urineUricAcid; // 1.48 to 4.43
     private final String date;
     private final String time;
     private final String addedBy;

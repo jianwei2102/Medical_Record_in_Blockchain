@@ -18,15 +18,17 @@ public class CredentialIO {
     
     public static Validation validateUserID(String userID) {
         Validation v = new Validation(true, "", "");
-        if (userID.isEmpty()) {
-            v.setValid(false);
-            v.setMessage("Add your IC number");
-            v.setMessageType("Missing Value");
-        }
-        else if (userID.matches("^[a-zA-Z]*$")) {
-            v.setValid(false);
-            v.setMessage("IC should be number only");
-            v.setMessageType("Invalid Input");
+        if (!userID.equals("admin")) {
+            if (userID.isEmpty()) {
+                v.setValid(false);
+                v.setMessage("Add your IC number");
+                v.setMessageType("Missing Value");
+            }
+            else if (userID.matches("^[a-zA-Z]*$")) {
+                v.setValid(false);
+                v.setMessage("IC should be number only");
+                v.setMessageType("Invalid Input");
+            }
         }
         return v;
     }

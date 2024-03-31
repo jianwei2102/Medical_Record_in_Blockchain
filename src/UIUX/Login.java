@@ -141,15 +141,23 @@ public class Login extends javax.swing.JFrame {
             if (credential != null) {
                 switch (credential.getRole()) {
                     case "patient":
-                        // Pass patient class to home page
-                        bcd.BCD.loginPatient = DataIO.PatientIO.checkPatient(credential.getUserID());
                         JOptionPane.showMessageDialog(null, "Login successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        bcd.BCD.loginPatient = DataIO.PatientIO.checkPatient(credential.getUserID());
+                        PatientMenu patientMenu = new PatientMenu();
+                        patientMenu.setVisible(true);
                         dispose();
                         break;
                     case "doctor":
-                        // Pass doctor class to home page
                         JOptionPane.showMessageDialog(null, "Login successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
                         bcd.BCD.loginDoctor = DataIO.DoctorIO.checkDoctor(credential.getUserID());
+                        DoctorMenu doctorMenu = new DoctorMenu();
+                        doctorMenu.setVisible(true);
+                        dispose();
+                        break;
+                    case "admin":
+                        JOptionPane.showMessageDialog(null, "Login successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        MedicalOfficerMenu medicalOfficerMenu = new MedicalOfficerMenu();
+                        medicalOfficerMenu.setVisible(true);
                         dispose();
                         break;
                     default:
