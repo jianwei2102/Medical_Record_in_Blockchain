@@ -50,16 +50,17 @@ public class HealthRecordIO {
         return new String(dataBytes);
     }
     
-    public String signTransaction(String encrypted) {
-        byte[] signed = DigitalSignature.getSignature(encrypted, "944342414321");
+    public String signTransaction(String encrypted, String doctorID) throws Exception {
+        
+        byte[] signed = DigitalSignature.getInstance().getSignature(encrypted, doctorID);
         // Convert the byte array to a Base64 encoded string
         String signedMsg = Base64.getEncoder().encodeToString(signed);
         return signedMsg;
     }
     
-    public boolean verifySignature(String encrypted, String signedMsg, String doctorID) {
+    public boolean verifySignature(String encrypted, String signedMsg, String doctorID) throws Exception {
         byte[] signedByte =Base64.getDecoder().decode(signedMsg);
-        boolean validationResult = DigitalSignature.isTextAndSignatureValid(encrypted, signedByte, doctorID);
+        boolean validationResult = DigitalSignature.getInstance().isTextAndSignatureValid(encrypted, signedByte, doctorID);
         return validationResult;
     }
 }

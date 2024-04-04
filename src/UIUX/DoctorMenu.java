@@ -4,6 +4,9 @@
  */
 package UIUX;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author xiuha
@@ -28,6 +31,7 @@ public class DoctorMenu extends javax.swing.JFrame {
 
         MenuLabel = new javax.swing.JLabel();
         LogoutButton = new javax.swing.JButton();
+        ViewHealthRecordButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,6 +46,14 @@ public class DoctorMenu extends javax.swing.JFrame {
             }
         });
 
+        ViewHealthRecordButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        ViewHealthRecordButton.setText("View Health Record");
+        ViewHealthRecordButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ViewHealthRecordButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -49,19 +61,23 @@ public class DoctorMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addComponent(LogoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(201, 201, 201)
-                        .addComponent(MenuLabel)))
-                .addContainerGap(171, Short.MAX_VALUE))
+                        .addComponent(MenuLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(160, 160, 160)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ViewHealthRecordButton, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LogoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(158, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(MenuLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 267, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
+                .addComponent(ViewHealthRecordButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
                 .addComponent(LogoutButton)
                 .addGap(66, 66, 66))
         );
@@ -77,6 +93,19 @@ public class DoctorMenu extends javax.swing.JFrame {
         login.setVisible(true);
         dispose();
     }//GEN-LAST:event_LogoutButtonActionPerformed
+
+    private void ViewHealthRecordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewHealthRecordButtonActionPerformed
+        // Need to do a table first then check permission before to this add page
+        
+        
+        try {
+            AddHealthRecord addHealthRecord = new AddHealthRecord();
+            addHealthRecord.setVisible(true);
+            dispose();
+        } catch (Exception ex) {
+            System.out.println("Unable to add Record");
+        }
+    }//GEN-LAST:event_ViewHealthRecordButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -116,5 +145,6 @@ public class DoctorMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LogoutButton;
     private javax.swing.JLabel MenuLabel;
+    private javax.swing.JButton ViewHealthRecordButton;
     // End of variables declaration//GEN-END:variables
 }

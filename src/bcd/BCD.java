@@ -26,9 +26,9 @@ public class BCD {
         login = new Login();
         login.setVisible(true);
 //        Credential
-//        Officer - admin;admin;3
-//        Patient - 111213141234;patient;1
-//        Docotr -  944342414321;doctor;2
+//        Officer - admin;admin
+//        Patient - 111213141234;patient
+//        Docotr -  944342414321;doctor
 
     }
 }

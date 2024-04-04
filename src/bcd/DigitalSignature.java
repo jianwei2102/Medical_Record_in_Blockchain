@@ -5,11 +5,12 @@ import java.security.PublicKey;
 import java.security.PrivateKey;
 
 public class DigitalSignature {
+    static DigitalSignature _instance;
     private static final String ALGORITHM = "SHA256WithRSA";
     private static Signature sig;
     
     // Constructor
-    public DigitalSignature() {
+    private DigitalSignature() {
         try {
             sig = Signature.getInstance(ALGORITHM);
         } catch (Exception e) {
@@ -17,8 +18,15 @@ public class DigitalSignature {
         }
     }
     
+    static public DigitalSignature getInstance() throws Exception {
+        if (_instance == null) {
+            _instance = new DigitalSignature();
+        }
+        return _instance;
+    }
+    
     // Digitally sign the encrypted Health Record before add to block
-    public static byte[] getSignature(String encryptedRecord, String doctorID){
+    public byte[] getSignature(String encryptedRecord, String doctorID){
         try {
             PrivateKey doctorPrivateKey = RSAKeyAccess.getPrivateKey("MyKeyPair/"+doctorID+"-PrivateKey");
             sig.initSign(doctorPrivateKey);
@@ -31,7 +39,7 @@ public class DigitalSignature {
     }
     
     // Check if the Medical Records is digitally signed by authentic doctor 
-    public static boolean isTextAndSignatureValid(String encryptedRecord, byte[] signature, String doctorID) {
+    public boolean isTextAndSignatureValid(String encryptedRecord, byte[] signature, String doctorID) {
         try {
             PublicKey doctorPublicKey = RSAKeyAccess.getPublicKey("MyKeyPair/"+doctorID+"-PublicKey");
             sig.initVerify(doctorPublicKey);
