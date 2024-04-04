@@ -1991,8 +1991,8 @@ public class AddHealthRecord extends javax.swing.JFrame {
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         // TODO add your handling code here:
-        PatientMenu patientMenu = new PatientMenu();
-        patientMenu.setVisible(true);
+        DoctorMenu doctorMenu = new DoctorMenu();
+        doctorMenu.setVisible(true);
         dispose();
     }//GEN-LAST:event_BackButtonActionPerformed
 

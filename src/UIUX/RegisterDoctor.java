@@ -225,6 +225,8 @@ public class RegisterDoctor extends javax.swing.JFrame {
             allCredential.add(new Credential(ic, password, role));
             allDoctor.add(new Doctor(ic, name, hospitalName, hospitalAddress, department, role));
             DataIO.DataIO.writeToFile();
+            DataIO.DoctorIO.createKeyPair(ic);
+            JOptionPane.showMessageDialog(null, "New doctor has been registered successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
             MedicalOfficerMenu medicalOfficerMenu = new MedicalOfficerMenu();
             medicalOfficerMenu.setVisible(true);
             dispose();

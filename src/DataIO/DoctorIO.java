@@ -10,18 +10,13 @@ public class DoctorIO {
     public static Doctor checkDoctor(String doctorID){ 
         Doctor found = null;
         for (Doctor d : allDoctor){
-            found = doctorID.equals(d.getDoctorID()) ? d : null;
-            break;
+            if (doctorID.equals(d.getDoctorID())) {
+                return d;
+            }
         }
        return found;
     }
-    
-    // addNewDoctor
-//        DataIO.allDoctor.add(new Doctor("1","1","1","1","1","1"));
-//        creaeteKeyPair(id)
-//        DataIO.writeToFile();
-    
-    // assume validation on ID has been performed before this function, so it wont override the key, then gg
+
     public static void createKeyPair(String doctorID) {
         RSAKeyPair.create();
 

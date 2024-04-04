@@ -107,13 +107,15 @@ public class DoctorMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_LogoutButtonActionPerformed
 
     private void AddHealthRecordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddHealthRecordButtonActionPerformed
+       
         try {
             AddHealthRecord addHealthRecord = new AddHealthRecord();
             addHealthRecord.setVisible(true);
             dispose();
         } catch (Exception ex) {
-            System.out.println("Unable to add Record");
+            Logger.getLogger(DoctorMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }//GEN-LAST:event_AddHealthRecordButtonActionPerformed
 
     private void ViewHealthRecordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewHealthRecordButtonActionPerformed
