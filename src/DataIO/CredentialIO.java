@@ -16,6 +16,19 @@ public class CredentialIO {
         return found;
     }
     
+    public static Validation validateExist(String userID) {
+        Validation v = new Validation(true, "", "");
+        for (Credential credential : allCredential) {
+            if (credential.getUserID().equals(userID)) {
+                v.setValid(false);
+                v.setMessage("This user already exists");
+                v.setMessageType("Invalid Input");
+                break;
+            }
+        }
+        return v;
+    }
+    
     public static Validation validateUserID(String userID) {
         Validation v = new Validation(true, "", "");
         if (!userID.equals("admin")) {
@@ -47,18 +60,4 @@ public class CredentialIO {
         }
         return v;
     }
-    
-    public static Validation validateExist(String userID) {
-        Validation v = new Validation(true, "", "");
-        for (Credential credential : allCredential) {
-            if (credential.getUserID().equals(userID)) {
-                v.setValid(false);
-                v.setMessage("This user already exists");
-                v.setMessageType("Invalid Input");
-                break;
-            }
-        }
-        return v;
-    }
-    // function checkUsername -> IC
 }

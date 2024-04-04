@@ -8,11 +8,12 @@ import javax.crypto.KeyGenerator;
 import java.security.NoSuchAlgorithmException;
 
 public class AESKey {
+    static AESKey _instance;
     private static final String algorithm = "AES";
     private static final String fileName = "encryption.txt";
     private final SecretKey aesKey;
     
-    public AESKey() {
+    private AESKey() {
         // Check if the file exists
         File file = new File(fileName);
         if (file.exists()) {
@@ -24,10 +25,17 @@ public class AESKey {
             writeAESKeyToFile(this.aesKey);
         }
     }
+    
+    static public AESKey getInstance() {
+        if (_instance == null) {
+            _instance = new AESKey();
+        }
+        return _instance;
+    }
 
     public SecretKey getAesKey() {
         return aesKey;
-//        To read in String
+//        // To read in String
 //        Base64.getEncoder().encodeToString(aesKey.getEncoded())
     }
     

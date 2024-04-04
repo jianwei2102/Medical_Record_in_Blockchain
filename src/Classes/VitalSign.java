@@ -17,7 +17,7 @@ public class VitalSign {
     private final String addedBy;
     private final String doctorPubKey;
     
-    // Constructor
+    // Constructor for Gson - Java object
     public VitalSign(int bloodPressure, int heartRate, int respiratoryRate, 
             double temperature, double height, double weight, double bodyMassIndex, 
             String date, String time, String doctorID, String doctorPubKey) {
@@ -34,6 +34,7 @@ public class VitalSign {
         this.doctorPubKey = doctorPubKey;
     }
     
+    // Constructor for new record
     public VitalSign(int bloodPressure, int heartRate, int respiratoryRate, 
             double temperature, double height, double weight, double bodyMassIndex, 
             String doctorID) throws Exception {

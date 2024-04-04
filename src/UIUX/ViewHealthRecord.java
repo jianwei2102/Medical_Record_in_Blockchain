@@ -35,15 +35,43 @@ public class ViewHealthRecord extends javax.swing.JFrame {
         ArrayList<Hospitalization> hospitalizations = healthRecord.getHospitalizations();
         ArrayList<Vaccination> vaccinations = healthRecord.getVaccinations();
         
-        VitalSign vitalSign = vitalSigns.get(vitalSigns.size() - 1);
-        MedicalHistory medicalHistory = medicalHistories.get(medicalHistories.size() - 1);
-        BloodTest bloodTest = bloodTests.get(bloodTests.size() - 1);
-        UrineTest urineTest = urineTests.get(urineTests.size() - 1);
-        MedicalInformation medicalInformation = medicalInformations.get(medicalInformations.size() - 1);
-        Hospitalization hospitalization = hospitalizations.get(hospitalizations.size() - 1);
-        Vaccination vaccination = vaccinations.get(vaccinations.size() - 1);
+        if (!vitalSigns.isEmpty()) {
+            VitalSign vitalSign = vitalSigns.get(vitalSigns.size() - 1);
+            displayVitalSign(vitalSign);
+        }
         
-        // Vital signs
+        if (!medicalHistories.isEmpty()) {
+            MedicalHistory medicalHistory = medicalHistories.get(medicalHistories.size() - 1);
+            displayMedicalHistory(medicalHistory);
+        }
+        if (!bloodTests.isEmpty()) {
+            BloodTest bloodTest = bloodTests.get(bloodTests.size() - 1);
+            displayBloodTest(bloodTest);
+        }
+    
+        if (!urineTests.isEmpty()) {
+            UrineTest urineTest = urineTests.get(urineTests.size() - 1);
+            displayUrineTest(urineTest);
+        }
+        
+        if (!medicalInformations.isEmpty()) {
+            MedicalInformation medicalInformation = medicalInformations.get(medicalInformations.size() - 1);
+            displayMedicalInformation(medicalInformation);
+        }
+        
+        if (!hospitalizations.isEmpty()) {
+            Hospitalization hospitalization = hospitalizations.get(hospitalizations.size() - 1);
+            displayHospitalization(hospitalization);
+        }
+        
+        if (!vaccinations.isEmpty()) {
+            Vaccination vaccination = vaccinations.get(vaccinations.size() - 1);
+            displayVaccination(vaccination);
+        }
+
+    }
+    
+    private void displayVitalSign(VitalSign vitalSign) {
         VitalSignsTimestampTextField.setText(vitalSign.getDate() + " | " + vitalSign.getTime());
         VitalSignsRecordedByTextField.setText(vitalSign.getAddedBy());
         BloodPressureTextField.setText(Integer.toString(vitalSign.getBloodPressure()));
@@ -53,17 +81,19 @@ public class ViewHealthRecord extends javax.swing.JFrame {
         HeightTextField.setText(Double.toString(vitalSign.getHeight()));
         WeightTextField.setText(Double.toString(vitalSign.getWeight()));
         BodyMassIndexTextField.setText(Double.toString(vitalSign.getBodyMassIndex()));
-        
-        // Medical history
+    }
+    
+    private void displayMedicalHistory(MedicalHistory medicalHistory) {
         MedicalHistoryTimestampTextField.setText(medicalHistory.getDate() + " | " + medicalHistory.getTime());
         MedicalHistoryRecordedByTextField.setText(medicalHistory.getAddedBy());
         AllergyTextField.setText(medicalHistory.getAllergy());
         ChronicConditionTextField.setText(medicalHistory.getChronicCondition());
         FamilyMedicalHistoryTextField.setText(medicalHistory.getFamilyMedicalHistory());
         MedicationTextField.setText(medicalHistory.getMedication());
-        PastSurgicalHistoryTextField.setText(medicalHistory.getPastSurgicalHistory());
-        
-        // Blood test
+        PastSurgicalHistoryTextField.setText(medicalHistory.getPastSurgicalHistory());   
+    }
+    
+    private void displayBloodTest(BloodTest bloodTest) {
         BloodTestTimestampTextField.setText(bloodTest.getDate() + " | " + bloodTest.getTime());
         BloodTestRecordedByTextField.setText(bloodTest.getAddedBy());
         WhiteBloodCellCountTextField.setText(Double.toString(bloodTest.getWhiteBloodCellCount()));
@@ -86,8 +116,9 @@ public class ViewHealthRecord extends javax.swing.JFrame {
         ThyroidStimulatingHormoneLevelTextField.setText(Double.toString(bloodTest.getThyroidStimulatingHormoneLevel()));
         TriiodothyronineLevelTextField.setText(Double.toString(bloodTest.getTriiodothyronineLevel()));
         ThyroxineLevelTextField.setText(Double.toString(bloodTest.getThyroxineLevel()));
-        
-        // Urine test
+    }
+    
+    private void displayUrineTest(UrineTest urineTest) {
         UrineTestTimestampTextField.setText(urineTest.getDate() + " | " + urineTest.getTime());
         UrineTestRecordedByTextField.setText(urineTest.getAddedBy());
         UrineClarityTextField.setText(urineTest.getUrineClarity());
@@ -110,8 +141,9 @@ public class ViewHealthRecord extends javax.swing.JFrame {
         UrinePotassiumTextField.setText(Double.toString(urineTest.getUrinePotassium()));
         UrineSodiumTextField.setText(Double.toString(urineTest.getUrineSodium()));
         UrineUricAcidTextField.setText(Double.toString(urineTest.getUrineUricAcid()));
-        
-        // Medical info
+    }
+    
+    private void displayMedicalInformation(MedicalInformation medicalInformation) {
         MedicalInfoTimestampTextField.setText(medicalInformation.getDate() + " | " + medicalInformation.getTime());
         MedicalInfoRecordedByTextField.setText(medicalInformation.getAddedBy());
         PrescriptionMedicationsTextArea.setText(medicalInformation.getPrescriptionMedications());
@@ -119,22 +151,22 @@ public class ViewHealthRecord extends javax.swing.JFrame {
         FrequencyOfUseTextField.setText(medicalInformation.getFrequencyOfUse());
         MealRequirementTextField.setText(medicalInformation.getMealRequirement());
         TreatmentGoalTextField.setText(medicalInformation.getTreatmentGoal());
-        
-        // Hospitalization
+    }
+    private void displayHospitalization(Hospitalization hospitalization) {
         HospitalizationTimestampTextField.setText(hospitalization.getDate() + " | " + hospitalization.getTime());
         HospitalizationRecordedByTextField.setText(hospitalization.getAddedBy());
         DateOfHospitalizationTextField.setText(hospitalization.getDateOfHospitalization());
         ReasonTextArea.setText(hospitalization.getReasonForHospitalization());
         DischargeSummaryTextArea.setText(hospitalization.getDischargeSummary());
-        
-        // Vaccination
+    }
+    
+    private void displayVaccination(Vaccination vaccination) {
         VaccinationTimestampTextField.setText(vaccination.getDate() + " | " + vaccination.getTime());
         VaccinationRecordedByTextField.setText(vaccination.getAddedBy());
         DateOfVaccinationTextField.setText(vaccination.getDateOfVaccination());
         TypesOfImmunizationsTextField.setText(vaccination.getTypesOfImmunizations());
         DosesAdministeredTextField.setText(Double.toString(vaccination.getDosesAdministered()));
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -492,7 +524,7 @@ public class ViewHealthRecord extends javax.swing.JFrame {
                             .addComponent(TemperatureLabel))
                         .addGap(18, 18, 18)
                         .addGroup(VitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(RespiratoryRateTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                            .addComponent(RespiratoryRateTextField)
                             .addComponent(TemperatureTextField))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(VitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2036,6 +2068,7 @@ public class ViewHealthRecord extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed

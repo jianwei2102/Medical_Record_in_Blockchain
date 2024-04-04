@@ -89,7 +89,7 @@ public class DataIO {
             PrintWriter pCredential = new PrintWriter("credential.txt");
             for(Credential c : allCredential) {
                 //String userID, String password, String role
-                pCredential.println(c.getUserID()+";"+c.getPassword()+";"+c.getPassword());
+                pCredential.println(c.getUserID()+";"+c.getPassword()+";"+c.getRole());
             }
             pCredential.close();
             

@@ -1,8 +1,6 @@
 package DataIO;
 
-import Classes.Patient;
-import Classes.MedicalHistory;
-// import Classes.*;  // Easier
+import Classes.*;
 import blockchain.Block;
 import blockchain.Blockchain;
 import blockchain.TransactionCollection;
@@ -16,7 +14,6 @@ public class BlockIO implements Serializable {
     private static final String masterFolder = "master";
     private static final String chainFile = masterFolder + "/chain.bin";
     
-    // New -> Genesis -> direct add
     public static void addNewBlock(String patientID, String doctorID, String category,
         String encryptedRecord, String signatureMessage) {
         Blockchain bc = Blockchain.getInstance();
@@ -24,7 +21,7 @@ public class BlockIO implements Serializable {
         // If the blockchain doesn't exist
         if(!new File(masterFolder).exists()){
            new File(masterFolder).mkdir();
-           /* Create genesis block/ first block */
+           // Create genesis block/ first block
            bc.genesis();
         }
         
@@ -48,6 +45,9 @@ public class BlockIO implements Serializable {
         Blockchain bc = Blockchain.getInstance();
         LinkedList<Block> blockchain = bc.get();
         
+        // Handle health record
+        HealthRecordIO hrIO = HealthRecordIO.getInstance();
+        
         for (Block block : blockchain){
             // Skip the genesis block
             if(block.getHeader().getIndex() != 0) {
@@ -61,7 +61,7 @@ public class BlockIO implements Serializable {
                 // Change to switch case or if else also can 
                 if(block.getTranxList().getCategory().equals("MedicalHistory")){
                     // Decrypt ebt encrypted record
-                    String record = HealthRecordIO.decryptRecord(block.getTranxList().getEncryptedHealthRecord());
+                    String record = hrIO.decryptRecord(block.getTranxList().getEncryptedHealthRecord());
 //                    System.out.println(record);
                     
                     // Use Gson to deserialize the JSON string into a Java object

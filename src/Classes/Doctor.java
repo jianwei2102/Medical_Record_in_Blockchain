@@ -1,15 +1,12 @@
 package Classes;
 
 public class Doctor {
-    // Need final? modifiable?
-    private String doctorID; // could start with 00
+    private String doctorID;
     private String name;
     private String hospitalName;
     private String hospitalAddress;
     private String department;
     private String role;
-//    private PublicKey publicKey;
-//    private PrivateKey privateKey;
 
     public Doctor(String doctorID, String name, String hospitalName, 
             String hospitalAddress, String department, String role) {

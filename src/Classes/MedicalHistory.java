@@ -15,7 +15,7 @@ public class MedicalHistory {
     private final String addedBy;
     private final String doctorPubKey;
 
-    // Constructor for reading from blockchain
+    // Constructor for Gson - Java object
     public MedicalHistory(String allergy, String medication, String chronicCondition,
                         String pastSurgicalHistory, String familyMedicalHistory, 
                         String doctorID, String date, String time, String doctorPubKey) {
@@ -30,7 +30,7 @@ public class MedicalHistory {
         this.doctorPubKey = doctorPubKey;
     }
     
-    // Constructor for new medical history
+    // Constructor for new record
     public MedicalHistory(String allergy, String medication, String chronicCondition, 
             String pastSurgicalHistory, String familyMedicalHistory, String doctorID) throws Exception {
         this.allergy = allergy;

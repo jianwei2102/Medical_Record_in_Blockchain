@@ -6,9 +6,6 @@ import java.sql.Timestamp;
 public class Block implements Serializable {
     Header header;
     TransactionCollection tranxList = null;
-//    String patientID;
-//    String encryptedHealthRecord;
-//    String signatureMessage;
     
     public Block(String previousHash, int previousIndex) {
         header = new Header();
@@ -32,7 +29,6 @@ public class Block implements Serializable {
         return tranxList;
     }
     
-    // Test value
     @Override
     public String toString() {
         return "Block: [header=Header [index="+header.getIndex()+", previousHash=" + header.getPreviousHash() + 
