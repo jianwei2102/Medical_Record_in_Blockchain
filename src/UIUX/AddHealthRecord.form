@@ -91,83 +91,89 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="VitalSignsTimestampLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="VitalSignsTimestampTextField" min="-2" pref="198" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="BloodPressureLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="HeartRateLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="HeartRateTextField" min="-2" pref="63" max="-2" attributes="0"/>
-                                  <Component id="BloodPressureTextField" min="-2" pref="63" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="BloodPressureUnitLabel" min="-2" max="-2" attributes="0"/>
-                                  <Component id="HeartRateUnitLabel" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="RespiratoryRateLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="TemperatureLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="RespiratoryRateTextField" max="32767" attributes="0"/>
-                                  <Component id="TemperatureTextField" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="RespiratoryRateUnitLabel" min="-2" max="-2" attributes="0"/>
-                                  <Component id="TemperatureUnitLabel" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="VitalSignsRecordedByLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="VitalSignsRecordedByTextField" min="-2" pref="210" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="BodyMassIndexLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="WeightLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="HeightLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="HeightTextField" min="-2" pref="63" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="HeightUnitLabel" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="BodyMassIndexTextField" min="-2" pref="63" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="BodyMassIndexUUnitLabel" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="VitalSignsTimestampLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="VitalSignsTimestampTextField" min="-2" pref="198" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="WeightTextField" min="-2" pref="63" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="BloodPressureLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="HeartRateLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="HeartRateTextField" min="-2" pref="63" max="-2" attributes="0"/>
+                                          <Component id="BloodPressureTextField" min="-2" pref="63" max="-2" attributes="0"/>
+                                      </Group>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="WeightUnitLabel" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="BloodPressureUnitLabel" min="-2" max="-2" attributes="0"/>
+                                          <Component id="HeartRateUnitLabel" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="TemperatureTextField" min="-2" pref="63" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="RespiratoryRateLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="TemperatureLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                                              <Component id="RespiratoryRateTextField" min="-2" pref="63" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="RespiratoryRateUnitLabel" min="-2" max="-2" attributes="0"/>
+                                          <Component id="TemperatureUnitLabel" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="VitalSignsRecordedByLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="VSPatientCom" min="-2" pref="189" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="BodyMassIndexLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="WeightLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="HeightLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="HeightTextField" min="-2" pref="63" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="HeightUnitLabel" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="BodyMassIndexTextField" min="-2" pref="63" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="BodyMassIndexUUnitLabel" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="WeightTextField" min="-2" pref="63" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="WeightUnitLabel" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace pref="160" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="addVitalSigns" min="-2" pref="83" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="114" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="addVitalSigns" min="-2" pref="83" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -179,7 +185,7 @@
                           <Component id="VitalSignsTimestampLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="VitalSignsTimestampTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="VitalSignsRecordedByLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="VitalSignsRecordedByTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="VSPatientCom" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -204,19 +210,19 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="RespiratoryRateLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="RespiratoryRateTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="RespiratoryRateUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="BodyMassIndexLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="BodyMassIndexTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="BodyMassIndexUUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="RespiratoryRateTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="TemperatureLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TemperatureTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="TemperatureUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TemperatureTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="157" max="32767" attributes="0"/>
+                      <EmptySpace pref="155" max="32767" attributes="0"/>
                       <Component id="addVitalSigns" min="-2" pref="32" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   </Group>
@@ -245,15 +251,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Recorded by"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="VitalSignsRecordedByTextField">
-              <Properties>
-                <Property name="editable" type="boolean" value="false"/>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="0"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Patient ID"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="BloodPressureLabel">
@@ -312,14 +310,6 @@
                 <Property name="text" type="java.lang.String" value="Respiratory Rate"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="RespiratoryRateTextField">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="0"/>
-                </Property>
-                <Property name="horizontalAlignment" type="int" value="11"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JLabel" name="RespiratoryRateUnitLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -334,14 +324,6 @@
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Temperature"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="TemperatureTextField">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="0"/>
-                </Property>
-                <Property name="horizontalAlignment" type="int" value="11"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="TemperatureUnitLabel">
@@ -432,6 +414,27 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addVitalSignsActionPerformed"/>
               </Events>
             </Component>
+            <Component class="javax.swing.JComboBox" name="VSPatientCom">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JTextField" name="TemperatureTextField">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="18" style="0"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="11"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="RespiratoryRateTextField">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="18" style="0"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="11"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="MedicalHistoryPanel">
@@ -476,9 +479,9 @@
                               <Component id="MedicalHistoryTimestampTextField" min="-2" pref="198" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="MedicalHistoryRecordedByLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="MedicalHistoryRecordedByTextField" min="-2" pref="210" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="108" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="MHPatientCom" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="PastSurgicalHistoryLabel" min="-2" max="-2" attributes="0"/>
@@ -502,7 +505,7 @@
                           <Component id="MedicalHistoryTimestampLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="MedicalHistoryTimestampTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="MedicalHistoryRecordedByLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="MedicalHistoryRecordedByTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="MHPatientCom" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -529,7 +532,7 @@
                           <Component id="PastSurgicalHistoryLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="PastSurgicalHistoryTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="105" max="32767" attributes="0"/>
+                      <EmptySpace pref="103" max="32767" attributes="0"/>
                       <Component id="addMedicalHistory" min="-2" pref="32" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
@@ -558,15 +561,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Recorded by"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="MedicalHistoryRecordedByTextField">
-              <Properties>
-                <Property name="editable" type="boolean" value="false"/>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="0"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Patient ID"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="AllergyLabel">
@@ -652,6 +647,11 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addMedicalHistoryActionPerformed"/>
               </Events>
             </Component>
+            <Component class="javax.swing.JComboBox" name="MHPatientCom">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="BloodTestPanel">
@@ -673,9 +673,9 @@
                       <Component id="BloodTestTimestampTextField" min="-2" pref="198" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="BloodTestRecordedByLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="BloodTestRecordedByTextField" min="-2" pref="210" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="BTPatientCom" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="160" max="-2" attributes="0"/>
                   </Group>
                   <Component id="BloodTestTabbedPane" alignment="1" max="32767" attributes="0"/>
               </Group>
@@ -688,7 +688,7 @@
                           <Component id="BloodTestTimestampLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="BloodTestTimestampTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="BloodTestRecordedByLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="BloodTestRecordedByTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="BTPatientCom" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="BloodTestTabbedPane" max="32767" attributes="0"/>
@@ -718,15 +718,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Recorded by"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="BloodTestRecordedByTextField">
-              <Properties>
-                <Property name="editable" type="boolean" value="false"/>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="0"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Patient ID"/>
               </Properties>
             </Component>
             <Container class="javax.swing.JTabbedPane" name="BloodTestTabbedPane">
@@ -835,7 +827,7 @@
                                   <Component id="PlateletCountTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="PlateletCountUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="123" max="32767" attributes="0"/>
+                              <EmptySpace pref="121" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1061,7 +1053,7 @@
                                   <Component id="SodiumLevelTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="SodiumLevelUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="77" max="32767" attributes="0"/>
+                              <EmptySpace pref="75" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1262,7 +1254,7 @@
                                   <Component id="TriglyceridesLevelTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="TriglyceridesLevelUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="261" max="32767" attributes="0"/>
+                              <EmptySpace pref="259" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1392,7 +1384,7 @@
                                   <Component id="BilirubinLevelTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="BilirubinLevelUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="169" max="32767" attributes="0"/>
+                              <EmptySpace pref="167" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1537,7 +1529,7 @@
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="addMedicalHistory5" min="-2" pref="83" max="-2" attributes="0"/>
+                              <Component id="addBloodTest" min="-2" pref="83" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -1563,8 +1555,8 @@
                                   <Component id="ThyroxineLevelTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="ThyroxineLevelUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="163" max="32767" attributes="0"/>
-                              <Component id="addMedicalHistory5" min="-2" pref="32" max="-2" attributes="0"/>
+                              <EmptySpace pref="161" max="32767" attributes="0"/>
+                              <Component id="addBloodTest" min="-2" pref="32" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -1643,18 +1635,23 @@
                         <Property name="text" type="java.lang.String" value="mcg/dL"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JButton" name="addMedicalHistory5">
+                    <Component class="javax.swing.JButton" name="addBloodTest">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Add"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addMedicalHistory5ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addBloodTestActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>
                 </Container>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JComboBox" name="BTPatientCom">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="UrineTestPanel">
@@ -1676,9 +1673,9 @@
                       <Component id="UrineTestTimestampTextField" min="-2" pref="198" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="UrineTestRecordedByLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="UrineTestRecordedByTextField" min="-2" pref="210" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="UTPatientCom" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="160" max="-2" attributes="0"/>
                   </Group>
                   <Component id="UrineTestTabbedPane" alignment="1" max="32767" attributes="0"/>
               </Group>
@@ -1691,10 +1688,10 @@
                           <Component id="UrineTestTimestampLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="UrineTestTimestampTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="UrineTestRecordedByLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="UrineTestRecordedByTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="UTPatientCom" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="UrineTestTabbedPane" max="32767" attributes="0"/>
+                      <Component id="UrineTestTabbedPane" min="-2" pref="372" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1721,15 +1718,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Recorded by"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="UrineTestRecordedByTextField">
-              <Properties>
-                <Property name="editable" type="boolean" value="false"/>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="0"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Patient ID"/>
               </Properties>
             </Component>
             <Container class="javax.swing.JTabbedPane" name="UrineTestTabbedPane">
@@ -1812,7 +1801,7 @@
                                   <Component id="UrineSpecificGravityLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="UrineSpecificGravityTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="169" max="32767" attributes="0"/>
+                              <EmptySpace pref="167" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1907,7 +1896,7 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="UrineBilirubinLabel" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace pref="42" max="32767" attributes="0"/>
                                       <Component id="UrineBilirubinTextField" min="-2" pref="63" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="103" alignment="0" groupAlignment="1" attributes="0">
@@ -1918,25 +1907,10 @@
                                               <EmptySpace max="32767" attributes="0"/>
                                               <Component id="UrineGlucoseTextField" min="-2" pref="63" max="-2" attributes="0"/>
                                           </Group>
-                                          <Group type="102" attributes="0">
-                                              <Component id="UrineProteinLabel" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="UrineProteinTextField" min="-2" pref="63" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" attributes="0">
-                                              <Component id="UrineNitritesLabel" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="UrineNitritesTextField" min="-2" pref="80" max="-2" attributes="0"/>
-                                          </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="UrineKetonesLabel" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
+                                              <EmptySpace pref="42" max="32767" attributes="0"/>
                                               <Component id="UrineKetonesTextField" min="-2" pref="63" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="UrineLeukocytesLabel" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="UrineLeukocytesTextField" min="-2" pref="63" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -1944,14 +1918,42 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="UrineProteinUnitLabel" min="-2" max="-2" attributes="0"/>
-                                  <Component id="UrineLeukocytesUnitLabel" min="-2" max="-2" attributes="0"/>
-                                  <Component id="UrineKetonesUnitLabel" min="-2" max="-2" attributes="0"/>
-                                  <Component id="UrineGlucoseUnitLabel" min="-2" max="-2" attributes="0"/>
-                                  <Component id="UrineBloodUnitLabel" min="-2" max="-2" attributes="0"/>
-                                  <Component id="UrineBilirubinUnitLabel" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="UrineKetonesUnitLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace pref="482" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="UrineGlucoseUnitLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="UrineBloodUnitLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="UrineBilirubinUnitLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="UrineProteinLabel" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Component id="UrineProteinTextField" min="-2" pref="63" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="UrineNitritesLabel" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Component id="UrineNitritesTextField" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="UrineLeukocytesLabel" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="UrineLeukocytesTextField" min="-2" pref="63" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="UrineProteinUnitLabel" min="-2" max="-2" attributes="0"/>
+                                          <Component id="UrineLeukocytesUnitLabel" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace pref="468" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1959,22 +1961,44 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="UrineBilirubinLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="UrineBilirubinTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="UrineBilirubinUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="UrineBloodLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="UrineBloodTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="UrineBloodUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="UrineGlucoseLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="UrineGlucoseTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="UrineGlucoseUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="UrineBilirubinLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="UrineBilirubinTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="UrineBilirubinUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="UrineBloodLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="UrineBloodTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="UrineBloodUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="UrineGlucoseLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="UrineGlucoseTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="UrineGlucoseUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="UrineLeukocytesLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="UrineLeukocytesTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="UrineLeukocytesUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="UrineNitritesLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="UrineNitritesTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="UrineProteinLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="UrineProteinTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="UrineProteinUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -1982,24 +2006,7 @@
                                   <Component id="UrineKetonesTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="UrineKetonesUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="UrineLeukocytesLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="UrineLeukocytesTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="UrineLeukocytesUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="UrineNitritesLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="UrineNitritesTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="UrineProteinLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="UrineProteinTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="UrineProteinUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace pref="29" max="32767" attributes="0"/>
+                              <EmptySpace pref="167" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -2268,7 +2275,7 @@
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="addMedicalHistory6" min="-2" pref="83" max="-2" attributes="0"/>
+                              <Component id="addUrineTest" min="-2" pref="83" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -2320,8 +2327,8 @@
                                   <Component id="UrineMicroalbuminTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="UrineMicroalbuminUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="73" max="32767" attributes="0"/>
-                              <Component id="addMedicalHistory6" min="-2" pref="32" max="-2" attributes="0"/>
+                              <EmptySpace pref="71" max="32767" attributes="0"/>
+                              <Component id="addUrineTest" min="-2" pref="32" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -2544,18 +2551,23 @@
                         <Property name="text" type="java.lang.String" value="mmol/24 hours"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JButton" name="addMedicalHistory6">
+                    <Component class="javax.swing.JButton" name="addUrineTest">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Add"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addMedicalHistory6ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addUrineTestActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>
                 </Container>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JComboBox" name="UTPatientCom">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="MedicalInfoPanel">
@@ -2584,8 +2596,9 @@
                               <Component id="MedicalInfoTimestampTextField" min="-2" pref="198" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="MedicalInfoRecordedByLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="MedicalInfoRecordedByTextField" min="-2" pref="210" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="MIPatientCom" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -2611,7 +2624,7 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="addMedicalHistory3" min="-2" pref="83" max="-2" attributes="0"/>
+                      <Component id="addMedicalInfo" min="-2" pref="83" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -2624,7 +2637,7 @@
                           <Component id="MedicalInfoTimestampLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="MedicalInfoTimestampTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="MedicalInfoRecordedByLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="MedicalInfoRecordedByTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="MIPatientCom" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -2652,8 +2665,8 @@
                           <Component id="TreatmentGoalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="TreatmentGoalTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="33" max="32767" attributes="0"/>
-                      <Component id="addMedicalHistory3" min="-2" pref="32" max="-2" attributes="0"/>
+                      <EmptySpace pref="31" max="32767" attributes="0"/>
+                      <Component id="addMedicalInfo" min="-2" pref="32" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -2681,15 +2694,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Recorded by"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="MedicalInfoRecordedByTextField">
-              <Properties>
-                <Property name="editable" type="boolean" value="false"/>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="0"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Patient ID"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="PrescriptionMedicationsLabel">
@@ -2787,13 +2792,18 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="addMedicalHistory3">
+            <Component class="javax.swing.JButton" name="addMedicalInfo">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Add"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addMedicalHistory3ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addMedicalInfoActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="MIPatientCom">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
@@ -2811,15 +2821,15 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="HospitalizationTimestampLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="HospitalizationTimestampTextField" min="-2" pref="198" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="HospitalizationRecordedByLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="HospitalizationRecordedByTextField" min="-2" pref="210" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="HPPatientCom" min="-2" pref="188" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -2828,21 +2838,18 @@
                                   <Component id="DischargeSummaryLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="DateOfHospitalizationTextField" min="-2" pref="155" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Component id="jScrollPane2" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jScrollPane2" pref="433" max="32767" attributes="0"/>
                                   <Component id="jScrollPane3" max="32767" attributes="0"/>
+                                  <Component id="dateOfHospitalizationChooser" min="-2" pref="154" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="114" max="32767" attributes="0"/>
+                      <EmptySpace pref="133" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="addMedicalHistory2" min="-2" pref="83" max="-2" attributes="0"/>
+                      <Component id="addHospitalization" min="-2" pref="83" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -2855,12 +2862,12 @@
                           <Component id="HospitalizationTimestampLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="HospitalizationTimestampTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="HospitalizationRecordedByLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="HospitalizationRecordedByTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="HPPatientCom" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="DateOfHospitalizationLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="DateOfHospitalizationTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="DateOfHospitalizationLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="dateOfHospitalizationChooser" pref="28" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -2872,8 +2879,8 @@
                           <Component id="DischargeSummaryLabel" min="-2" max="-2" attributes="0"/>
                           <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="42" max="32767" attributes="0"/>
-                      <Component id="addMedicalHistory2" min="-2" pref="32" max="-2" attributes="0"/>
+                      <EmptySpace pref="40" max="32767" attributes="0"/>
+                      <Component id="addHospitalization" min="-2" pref="32" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -2901,15 +2908,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Recorded by"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="HospitalizationRecordedByTextField">
-              <Properties>
-                <Property name="editable" type="boolean" value="false"/>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="0"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Patient ID"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="DateOfHospitalizationLabel">
@@ -2918,13 +2917,6 @@
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Date of Hospitalization"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="DateOfHospitalizationTextField">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="0"/>
-                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="ReasonLabel">
@@ -2979,13 +2971,20 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="addMedicalHistory2">
+            <Component class="javax.swing.JButton" name="addHospitalization">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Add"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addMedicalHistory2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addHospitalizationActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="HPPatientCom">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="com.toedter.calendar.JDateChooser" name="dateOfHospitalizationChooser">
             </Component>
           </SubComponents>
         </Container>
@@ -3001,6 +3000,11 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="addVaccination" min="-2" pref="83" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -3019,20 +3023,18 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="DosesAdministeredTextField" min="-2" pref="63" max="-2" attributes="0"/>
-                                  <Component id="DateOfVaccinationTextField" min="-2" pref="155" max="-2" attributes="0"/>
                                   <Component id="TypesOfImmunizationsTextField" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="DosesAdministeredTextField" min="-2" pref="63" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="DateOfVaccinationChooser" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="VaccinationRecordedByTextField" min="-2" pref="210" max="-2" attributes="0"/>
-                      <EmptySpace pref="114" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="addMedicalHistory1" min="-2" pref="83" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="VCPatientCom" min="-2" pref="189" max="-2" attributes="0"/>
+                      <EmptySpace pref="160" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -3044,12 +3046,12 @@
                           <Component id="VaccinationTimestampLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="VaccinationTimestampTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="VaccinationRecordedByLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="VaccinationRecordedByTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="VCPatientCom" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="DateOfVaccinationLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="DateOfVaccinationTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="DateOfVaccinationLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="DateOfVaccinationChooser" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -3061,8 +3063,8 @@
                           <Component id="DosesAdministeredLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="DosesAdministeredTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="204" max="32767" attributes="0"/>
-                      <Component id="addMedicalHistory1" min="-2" pref="32" max="-2" attributes="0"/>
+                      <EmptySpace pref="202" max="32767" attributes="0"/>
+                      <Component id="addVaccination" min="-2" pref="32" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -3090,15 +3092,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Recorded by"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="VaccinationRecordedByTextField">
-              <Properties>
-                <Property name="editable" type="boolean" value="false"/>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="0"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Patient ID"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="DateOfVaccinationLabel">
@@ -3107,13 +3101,6 @@
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Date of Vaccination"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="DateOfVaccinationTextField">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="18" style="0"/>
-                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="TypesOfImmunizationsLabel">
@@ -3147,13 +3134,20 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="addMedicalHistory1">
+            <Component class="javax.swing.JButton" name="addVaccination">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Add"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addMedicalHistory1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addVaccinationActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="VCPatientCom">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="com.toedter.calendar.JDateChooser" name="DateOfVaccinationChooser">
             </Component>
           </SubComponents>
         </Container>

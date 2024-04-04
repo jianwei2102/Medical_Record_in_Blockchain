@@ -9,6 +9,7 @@ import Classes.HealthRecord;
 import Classes.Hospitalization;
 import Classes.MedicalHistory;
 import Classes.MedicalInformation;
+import Classes.Patient;
 import Classes.UrineTest;
 import Classes.Vaccination;
 import Classes.VitalSign;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
  *
  * @author xiuha
  */
-public class ViewHealthRecord extends javax.swing.JFrame {
+public class ViewHealthRecordDoctor extends javax.swing.JFrame {
 
     /**
      * Creates new form ViewHealthRecord
@@ -31,75 +32,29 @@ public class ViewHealthRecord extends javax.swing.JFrame {
     public ArrayList<Hospitalization> hospitalizations;
     public ArrayList<Vaccination> vaccinations;
     
-    public ViewHealthRecord() {
+    public ViewHealthRecordDoctor() {
         initComponents();
-        HealthRecord healthRecord = bcd.BCD.loginPatient.getMyHealthRecord();
         
-        vitalSigns = healthRecord.getVitalSigns();
-        medicalHistories = healthRecord.getMedicalHistories();
-        bloodTests = healthRecord.getBloodTests();
-        urineTests = healthRecord.getUrineTests();
-        medicalInformations = healthRecord.getMedicalInformations();
-        hospitalizations = healthRecord.getHospitalizations();
-        vaccinations = healthRecord.getVaccinations();
-
-        if (!healthRecord.getVitalSigns().isEmpty()) {
-            for (int i = 1; i <= vitalSigns.size(); i++) {
-                vitalSignsCom.addItem(String.valueOf(i));
-            }
-            vitalSignsCom.setSelectedIndex(vitalSigns.size() - 1);
-            displayVitalSign(vitalSigns.size() - 1);
-        }
-        
-        if (!medicalHistories.isEmpty()) {
-            for (int i = 1; i <= medicalHistories.size(); i++) {
-                medicalHistoryCom.addItem(String.valueOf(i));
-            }
-            medicalHistoryCom.setSelectedIndex(medicalHistories.size() - 1);
-            displayMedicalHistory(medicalHistories.size() - 1);
-        }
-        if (!bloodTests.isEmpty()) {
-            for (int i = 1; i <= bloodTests.size(); i++) {
-                bloodTestCom.addItem(String.valueOf(i));
-            }
-            bloodTestCom.setSelectedIndex(bloodTests.size() - 1);
-            displayBloodTest(bloodTests.size() - 1);
-        }
-    
-        if (!urineTests.isEmpty()) {
-            for (int i = 1; i <= urineTests.size(); i++) {
-                urineTestCom.addItem(String.valueOf(i));
-            }
-            urineTestCom.setSelectedIndex(urineTests.size() - 1);
-            displayUrineTest(urineTests.size() - 1);
-        }
-        
-        if (!medicalInformations.isEmpty()) {
-            for (int i = 1; i <= medicalInformations.size(); i++) {
-                medicalInfoCom.addItem(String.valueOf(i));
-            }
-            medicalInfoCom.setSelectedIndex(medicalInformations.size() - 1);
-            displayMedicalInformation(medicalInformations.size() - 1);
-        }
-        
-        if (!hospitalizations.isEmpty()) {
-            for (int i = 1; i <= hospitalizations.size(); i++) {
-                hospitalizationCom.addItem(String.valueOf(i));
-            }
-            hospitalizationCom.setSelectedIndex(hospitalizations.size() - 1);
-            displayHospitalization(hospitalizations.size() - 1);
-        }
-        
-        if (!vaccinations.isEmpty()) {
-            for (int i = 1; i <= vaccinations.size(); i++) {
-                vaccinationCom.addItem(String.valueOf(i));
-            }
-            vaccinationCom.setSelectedIndex(vaccinations.size() - 1);
-            displayVaccination(vaccinations.size() - 1);
+        // Insert all the patient in combo box for doctor to select
+        for (Patient p : DataIO.DataIO.allPatient) {
+            patientCom.addItem(p.getPatientID());
         }
     }
     
     private void displayVitalSign(int index) {
+        if (index == -1) {
+            VitalSignsTimestampTextField.setText("");
+            VitalSignsRecordedByTextField.setText("");
+            BloodPressureTextField.setText("");
+            HeartRateTextField.setText("");
+            RespiratoryRateTextField.setText("");
+            TemperatureTextField.setText("");
+            HeightTextField.setText("");
+            WeightTextField.setText("");
+            BodyMassIndexTextField.setText("");
+            return;
+        }
+        
         VitalSign vitalSign = vitalSigns.get(index);
         VitalSignsTimestampTextField.setText(vitalSign.getDate() + " | " + vitalSign.getTime());
         VitalSignsRecordedByTextField.setText(vitalSign.getAddedBy());
@@ -113,7 +68,18 @@ public class ViewHealthRecord extends javax.swing.JFrame {
     }
     
     private void displayMedicalHistory(int index) {
-         MedicalHistory medicalHistory = medicalHistories.get(index);
+        if (index == -1) {
+            MedicalHistoryTimestampTextField.setText("");
+            MedicalHistoryRecordedByTextField.setText("");
+            AllergyTextField.setText("");
+            ChronicConditionTextField.setText("");
+            FamilyMedicalHistoryTextField.setText("");
+            MedicationTextField.setText("");
+            PastSurgicalHistoryTextField.setText("");
+            return;
+        }
+        
+        MedicalHistory medicalHistory = medicalHistories.get(index);
         MedicalHistoryTimestampTextField.setText(medicalHistory.getDate() + " | " + medicalHistory.getTime());
         MedicalHistoryRecordedByTextField.setText(medicalHistory.getAddedBy());
         AllergyTextField.setText(medicalHistory.getAllergy());
@@ -124,6 +90,32 @@ public class ViewHealthRecord extends javax.swing.JFrame {
     }
     
     private void displayBloodTest(int index) {
+        if (index == -1) {
+            BloodTestTimestampTextField.setText("");
+            BloodTestRecordedByTextField.setText("");
+            WhiteBloodCellCountTextField.setText("");
+            RedBloodCellCountTextField.setText("");
+            HemoglobinLevelTextField.setText("");
+            HematocritLevelTextField.setText("");
+            PlateletCountTextField.setText("");
+            FastingBloodGlucoseLevelTextField.setText("");
+            CreatinineLevelTextField.setText("");
+            BloodUreaNitrogenLevelTextField.setText("");
+            CalciumLevelTextField.setText("");
+            PotassiumLevelTextField.setText("");
+            SodiumLevelTextField.setText("");
+            CholesterolLevelTextField.setText("");
+            TriglyceridesLevelTextField.setText("");
+            AspartateAminotransferaseLevelTextField.setText("");
+            AlanineAminotransferaseLevelTextField.setText("");
+            AlkalinePhosphataseLevelTextField.setText("");
+            BilirubinLevelTextField.setText("");
+            ThyroidStimulatingHormoneLevelTextField.setText("");
+            TriiodothyronineLevelTextField.setText("");
+            ThyroxineLevelTextField.setText("");
+            return;
+        }
+        
         BloodTest bloodTest = bloodTests.get(index);
         BloodTestTimestampTextField.setText(bloodTest.getDate() + " | " + bloodTest.getTime());
         BloodTestRecordedByTextField.setText(bloodTest.getAddedBy());
@@ -150,6 +142,32 @@ public class ViewHealthRecord extends javax.swing.JFrame {
     }
     
     private void displayUrineTest(int index) {
+        if (index == -1) {
+            UrineTestTimestampTextField.setText("");
+            UrineTestRecordedByTextField.setText("");
+            UrineClarityTextField.setText("");
+            UrineColorTextField.setText("");
+            UrinepHTextField.setText("");
+            UrineSpecificGravityTextField.setText("");
+            UrineBilirubinTextField.setText("");
+            UrineBloodTextField.setText("");
+            UrineGlucoseTextField.setText("");
+            UrineKetonesTextField.setText("");
+            UrineLeukocytesTextField.setText("");
+            UrineNitritesTextField.setText("");
+            UrineProteinTextField.setText("");
+            UrineAlbuminTextField.setText("");
+            UrineCalciumTextField.setText("");
+            UrineCreatinineTextField.setText("");
+            UrineMagnesiumTextField.setText("");
+            UrineMicroalbuminTextField.setText("");
+            UrineOsmolalityTextField.setText("");
+            UrinePotassiumTextField.setText("");
+            UrineSodiumTextField.setText("");
+            UrineUricAcidTextField.setText("");
+            return;
+        }
+        
         UrineTest urineTest = urineTests.get(index);
         UrineTestTimestampTextField.setText(urineTest.getDate() + " | " + urineTest.getTime());
         UrineTestRecordedByTextField.setText(urineTest.getAddedBy());
@@ -176,6 +194,17 @@ public class ViewHealthRecord extends javax.swing.JFrame {
     }
     
     private void displayMedicalInformation(int index) {
+        if (index == -1) {
+            MedicalInfoTimestampTextField.setText("");
+            MedicalInfoRecordedByTextField.setText("");
+            PrescriptionMedicationsTextArea.setText("");
+            DosagesTextField.setText("");
+            FrequencyOfUseTextField.setText("");
+            MealRequirementTextField.setText("");
+            TreatmentGoalTextField.setText("");
+            return;
+        }
+        
         MedicalInformation medicalInformation = medicalInformations.get(index);
         MedicalInfoTimestampTextField.setText(medicalInformation.getDate() + " | " + medicalInformation.getTime());
         MedicalInfoRecordedByTextField.setText(medicalInformation.getAddedBy());
@@ -187,6 +216,15 @@ public class ViewHealthRecord extends javax.swing.JFrame {
     }
     
     private void displayHospitalization(int index) {
+        if (index == -1) {
+            HospitalizationTimestampTextField.setText("");
+            HospitalizationRecordedByTextField.setText("");
+            DateOfHospitalizationTextField.setText("");
+            ReasonTextArea.setText("");
+            DischargeSummaryTextArea.setText("");
+            return;
+        }
+        
         Hospitalization hospitalization = hospitalizations.get(index);
         HospitalizationTimestampTextField.setText(hospitalization.getDate() + " | " + hospitalization.getTime());
         HospitalizationRecordedByTextField.setText(hospitalization.getAddedBy());
@@ -196,6 +234,15 @@ public class ViewHealthRecord extends javax.swing.JFrame {
     }
     
     private void displayVaccination(int index) {
+        if (index == -1) {
+            VaccinationTimestampTextField.setText("");
+            VaccinationRecordedByTextField.setText("");
+            DateOfVaccinationTextField.setText("");
+            TypesOfImmunizationsTextField.setText("");
+            DosesAdministeredTextField.setText("");
+            return;
+        }
+        
         Vaccination vaccination = vaccinations.get(index);
         VaccinationTimestampTextField.setText(vaccination.getDate() + " | " + vaccination.getTime());
         VaccinationRecordedByTextField.setText(vaccination.getAddedBy());
@@ -440,6 +487,7 @@ public class ViewHealthRecord extends javax.swing.JFrame {
         DosesAdministeredLabel = new javax.swing.JLabel();
         DosesAdministeredTextField = new javax.swing.JTextField();
         vaccinationCom = new javax.swing.JComboBox<>();
+        patientCom = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -2154,6 +2202,12 @@ public class ViewHealthRecord extends javax.swing.JFrame {
 
         HealthRecordTabbedPane.addTab("Vaccination", VaccinationPanel);
 
+        patientCom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                patientComActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -2161,18 +2215,24 @@ public class ViewHealthRecord extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(HealthRecordLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(patientCom, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BackButton)
                 .addContainerGap())
-            .addComponent(HealthRecordTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(HealthRecordTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(HealthRecordLabel)
-                    .addComponent(BackButton))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(HealthRecordLabel)
+                        .addComponent(BackButton))
+                    .addComponent(patientCom, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(HealthRecordTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -2216,6 +2276,84 @@ public class ViewHealthRecord extends javax.swing.JFrame {
         displayVitalSign(vitalSignsCom.getSelectedIndex());
     }//GEN-LAST:event_vitalSignsComActionPerformed
 
+    private void patientComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientComActionPerformed
+        String patientID = patientCom.getSelectedItem().toString();
+        HealthRecord healthRecord = DataIO.PatientIO.checkPatient(patientID).getMyHealthRecord();
+        
+        
+        vitalSigns = healthRecord.getVitalSigns();
+        medicalHistories = healthRecord.getMedicalHistories();
+        bloodTests = healthRecord.getBloodTests();
+        urineTests = healthRecord.getUrineTests();
+        medicalInformations = healthRecord.getMedicalInformations();
+        hospitalizations = healthRecord.getHospitalizations();
+        vaccinations = healthRecord.getVaccinations();
+        
+        // Remove the items in combo box
+        vitalSignsCom.removeAllItems();
+        medicalHistoryCom.removeAllItems();
+        bloodTestCom.removeAllItems();
+        urineTestCom.removeAllItems();
+        medicalInfoCom.removeAllItems();
+        hospitalizationCom.removeAllItems();
+        vaccinationCom.removeAllItems();
+
+        if (!healthRecord.getVitalSigns().isEmpty()) {
+            for (int i = 1; i <= vitalSigns.size(); i++) {
+                vitalSignsCom.addItem(String.valueOf(i));
+            }
+            vitalSignsCom.setSelectedIndex(vitalSigns.size() - 1);
+            displayVitalSign(vitalSigns.size() - 1);
+        }
+        
+        if (!medicalHistories.isEmpty()) {
+            for (int i = 1; i <= medicalHistories.size(); i++) {
+                medicalHistoryCom.addItem(String.valueOf(i));
+            }
+            medicalHistoryCom.setSelectedIndex(medicalHistories.size() - 1);
+            displayMedicalHistory(medicalHistories.size() - 1);
+        }
+        if (!bloodTests.isEmpty()) {
+            for (int i = 1; i <= bloodTests.size(); i++) {
+                bloodTestCom.addItem(String.valueOf(i));
+            }
+            bloodTestCom.setSelectedIndex(bloodTests.size() - 1);
+            displayBloodTest(bloodTests.size() - 1);
+        }
+    
+        if (!urineTests.isEmpty()) {
+            for (int i = 1; i <= urineTests.size(); i++) {
+                urineTestCom.addItem(String.valueOf(i));
+            }
+            urineTestCom.setSelectedIndex(urineTests.size() - 1);
+            displayUrineTest(urineTests.size() - 1);
+        }
+        
+        if (!medicalInformations.isEmpty()) {
+            for (int i = 1; i <= medicalInformations.size(); i++) {
+                medicalInfoCom.addItem(String.valueOf(i));
+            }
+            medicalInfoCom.setSelectedIndex(medicalInformations.size() - 1);
+            displayMedicalInformation(medicalInformations.size() - 1);
+        }
+        
+        if (!hospitalizations.isEmpty()) {
+            for (int i = 1; i <= hospitalizations.size(); i++) {
+                hospitalizationCom.addItem(String.valueOf(i));
+            }
+            hospitalizationCom.setSelectedIndex(hospitalizations.size() - 1);
+            displayHospitalization(hospitalizations.size() - 1);
+        }
+        
+        if (!vaccinations.isEmpty()) {
+            for (int i = 1; i <= vaccinations.size(); i++) {
+                vaccinationCom.addItem(String.valueOf(i));
+            }
+            vaccinationCom.setSelectedIndex(vaccinations.size() - 1);
+            displayVaccination(vaccinations.size() - 1);
+        }
+    }//GEN-LAST:event_patientComActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2233,20 +2371,21 @@ public class ViewHealthRecord extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewHealthRecord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewHealthRecordDoctor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewHealthRecord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewHealthRecordDoctor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewHealthRecord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewHealthRecordDoctor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewHealthRecord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewHealthRecordDoctor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewHealthRecord().setVisible(true);
+                new ViewHealthRecordDoctor().setVisible(true);
             }
         });
     }
@@ -2477,6 +2616,7 @@ public class ViewHealthRecord extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JComboBox<String> medicalHistoryCom;
     private javax.swing.JComboBox<String> medicalInfoCom;
+    private javax.swing.JComboBox<String> patientCom;
     private javax.swing.JComboBox<String> urineTestCom;
     private javax.swing.JComboBox<String> vaccinationCom;
     private javax.swing.JComboBox<String> vitalSignsCom;

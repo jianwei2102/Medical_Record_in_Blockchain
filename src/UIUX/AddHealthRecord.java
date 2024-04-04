@@ -16,25 +16,51 @@ import Classes.VitalSign;
 import DataIO.BlockIO;
 import java.util.ArrayList;
 import DataIO.HealthRecordIO;
+import bcd.BCD;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Date;
+import java.util.concurrent.*;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author xiuha
  */
 public class AddHealthRecord extends javax.swing.JFrame {
-
-    /**
-     * Creates new form ViewHealthRecord
-     */
     private final String doctorID;
-    private final String patientID;
     private final HealthRecordIO hrIO;
     
     public AddHealthRecord() throws Exception {
         initComponents();
-        patientID = "111213141234";
-        doctorID = "944342414321";
+        doctorID = BCD.loginDoctor.getDoctorID();
         hrIO = HealthRecordIO.getInstance();
+        
+        // Insert all the patient in combo box for doctor to select
+        for (Patient p : DataIO.DataIO.allPatient) {
+            VSPatientCom.addItem(p.getPatientID());
+            MHPatientCom.addItem(p.getPatientID());
+            BTPatientCom.addItem(p.getPatientID());
+            UTPatientCom.addItem(p.getPatientID());
+            MIPatientCom.addItem(p.getPatientID());
+            HPPatientCom.addItem(p.getPatientID());
+            VCPatientCom.addItem(p.getPatientID());
+        }
+        
+        // Create a Timer to update the timestamp every 10 seconds
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+        Runnable task = () -> {
+            VitalSignsTimestampTextField.setText(LocalDate.now().toString() + " | " + LocalTime.now().toString());
+            MedicalHistoryTimestampTextField.setText(LocalDate.now().toString() + " | " + LocalTime.now().toString());
+            BloodTestTimestampTextField.setText(LocalDate.now().toString() + " | " + LocalTime.now().toString());
+            UrineTestTimestampTextField.setText(LocalDate.now().toString() + " | " + LocalTime.now().toString());
+            MedicalInfoTimestampTextField.setText(LocalDate.now().toString() + " | " + LocalTime.now().toString());
+            HospitalizationTimestampTextField.setText(LocalDate.now().toString() + " | " + LocalTime.now().toString());
+            VaccinationTimestampTextField.setText(LocalDate.now().toString() + " | " + LocalTime.now().toString());
+        };
+        executor.scheduleAtFixedRate(task, 0, 10, TimeUnit.SECONDS);
+    
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,7 +78,6 @@ public class AddHealthRecord extends javax.swing.JFrame {
         VitalSignsTimestampLabel = new javax.swing.JLabel();
         VitalSignsTimestampTextField = new javax.swing.JTextField();
         VitalSignsRecordedByLabel = new javax.swing.JLabel();
-        VitalSignsRecordedByTextField = new javax.swing.JTextField();
         BloodPressureLabel = new javax.swing.JLabel();
         BloodPressureTextField = new javax.swing.JTextField();
         BloodPressureUnitLabel = new javax.swing.JLabel();
@@ -60,10 +85,8 @@ public class AddHealthRecord extends javax.swing.JFrame {
         HeartRateTextField = new javax.swing.JTextField();
         HeartRateUnitLabel = new javax.swing.JLabel();
         RespiratoryRateLabel = new javax.swing.JLabel();
-        RespiratoryRateTextField = new javax.swing.JTextField();
         RespiratoryRateUnitLabel = new javax.swing.JLabel();
         TemperatureLabel = new javax.swing.JLabel();
-        TemperatureTextField = new javax.swing.JTextField();
         TemperatureUnitLabel = new javax.swing.JLabel();
         HeightLabel = new javax.swing.JLabel();
         HeightTextField = new javax.swing.JTextField();
@@ -75,11 +98,13 @@ public class AddHealthRecord extends javax.swing.JFrame {
         BodyMassIndexTextField = new javax.swing.JTextField();
         BodyMassIndexUUnitLabel = new javax.swing.JLabel();
         addVitalSigns = new javax.swing.JButton();
+        VSPatientCom = new javax.swing.JComboBox<>();
+        TemperatureTextField = new javax.swing.JTextField();
+        RespiratoryRateTextField = new javax.swing.JTextField();
         MedicalHistoryPanel = new javax.swing.JPanel();
         MedicalHistoryTimestampLabel = new javax.swing.JLabel();
         MedicalHistoryTimestampTextField = new javax.swing.JTextField();
         MedicalHistoryRecordedByLabel = new javax.swing.JLabel();
-        MedicalHistoryRecordedByTextField = new javax.swing.JTextField();
         AllergyLabel = new javax.swing.JLabel();
         AllergyTextField = new javax.swing.JTextField();
         ChronicConditionLabel = new javax.swing.JLabel();
@@ -91,11 +116,11 @@ public class AddHealthRecord extends javax.swing.JFrame {
         PastSurgicalHistoryLabel = new javax.swing.JLabel();
         PastSurgicalHistoryTextField = new javax.swing.JTextField();
         addMedicalHistory = new javax.swing.JButton();
+        MHPatientCom = new javax.swing.JComboBox<>();
         BloodTestPanel = new javax.swing.JPanel();
         BloodTestTimestampLabel = new javax.swing.JLabel();
         BloodTestTimestampTextField = new javax.swing.JTextField();
         BloodTestRecordedByLabel = new javax.swing.JLabel();
-        BloodTestRecordedByTextField = new javax.swing.JTextField();
         BloodTestTabbedPane = new javax.swing.JTabbedPane();
         CompleteBloodCountPanel = new javax.swing.JPanel();
         WhiteBloodCellCountLabel = new javax.swing.JLabel();
@@ -162,12 +187,12 @@ public class AddHealthRecord extends javax.swing.JFrame {
         ThyroxineLevelLabel = new javax.swing.JLabel();
         ThyroxineLevelTextField = new javax.swing.JTextField();
         ThyroxineLevelUnitLabel = new javax.swing.JLabel();
-        addMedicalHistory5 = new javax.swing.JButton();
+        addBloodTest = new javax.swing.JButton();
+        BTPatientCom = new javax.swing.JComboBox<>();
         UrineTestPanel = new javax.swing.JPanel();
         UrineTestTimestampLabel = new javax.swing.JLabel();
         UrineTestTimestampTextField = new javax.swing.JTextField();
         UrineTestRecordedByLabel = new javax.swing.JLabel();
-        UrineTestRecordedByTextField = new javax.swing.JTextField();
         UrineTestTabbedPane = new javax.swing.JTabbedPane();
         UrineAppearanceAndCompositionPanel = new javax.swing.JPanel();
         UrineClarityLabel = new javax.swing.JLabel();
@@ -228,12 +253,12 @@ public class AddHealthRecord extends javax.swing.JFrame {
         UrineUricAcidLabel = new javax.swing.JLabel();
         UrineUricAcidTextField = new javax.swing.JTextField();
         UrineUricAcidUnitLabel = new javax.swing.JLabel();
-        addMedicalHistory6 = new javax.swing.JButton();
+        addUrineTest = new javax.swing.JButton();
+        UTPatientCom = new javax.swing.JComboBox<>();
         MedicalInfoPanel = new javax.swing.JPanel();
         MedicalInfoTimestampLabel = new javax.swing.JLabel();
         MedicalInfoTimestampTextField = new javax.swing.JTextField();
         MedicalInfoRecordedByLabel = new javax.swing.JLabel();
-        MedicalInfoRecordedByTextField = new javax.swing.JTextField();
         PrescriptionMedicationsLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         PrescriptionMedicationsTextArea = new javax.swing.JTextArea();
@@ -246,33 +271,34 @@ public class AddHealthRecord extends javax.swing.JFrame {
         MealRequirementTextField = new javax.swing.JTextField();
         TreatmentGoalLabel = new javax.swing.JLabel();
         TreatmentGoalTextField = new javax.swing.JTextField();
-        addMedicalHistory3 = new javax.swing.JButton();
+        addMedicalInfo = new javax.swing.JButton();
+        MIPatientCom = new javax.swing.JComboBox<>();
         HospitalizationPanel = new javax.swing.JPanel();
         HospitalizationTimestampLabel = new javax.swing.JLabel();
         HospitalizationTimestampTextField = new javax.swing.JTextField();
         HospitalizationRecordedByLabel = new javax.swing.JLabel();
-        HospitalizationRecordedByTextField = new javax.swing.JTextField();
         DateOfHospitalizationLabel = new javax.swing.JLabel();
-        DateOfHospitalizationTextField = new javax.swing.JTextField();
         ReasonLabel = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         ReasonTextArea = new javax.swing.JTextArea();
         DischargeSummaryLabel = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         DischargeSummaryTextArea = new javax.swing.JTextArea();
-        addMedicalHistory2 = new javax.swing.JButton();
+        addHospitalization = new javax.swing.JButton();
+        HPPatientCom = new javax.swing.JComboBox<>();
+        dateOfHospitalizationChooser = new com.toedter.calendar.JDateChooser();
         VaccinationPanel = new javax.swing.JPanel();
         VaccinationTimestampLabel = new javax.swing.JLabel();
         VaccinationTimestampTextField = new javax.swing.JTextField();
         VaccinationRecordedByLabel = new javax.swing.JLabel();
-        VaccinationRecordedByTextField = new javax.swing.JTextField();
         DateOfVaccinationLabel = new javax.swing.JLabel();
-        DateOfVaccinationTextField = new javax.swing.JTextField();
         TypesOfImmunizationsLabel = new javax.swing.JLabel();
         TypesOfImmunizationsTextField = new javax.swing.JTextField();
         DosesAdministeredLabel = new javax.swing.JLabel();
         DosesAdministeredTextField = new javax.swing.JTextField();
-        addMedicalHistory1 = new javax.swing.JButton();
+        addVaccination = new javax.swing.JButton();
+        VCPatientCom = new javax.swing.JComboBox<>();
+        DateOfVaccinationChooser = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -296,10 +322,7 @@ public class AddHealthRecord extends javax.swing.JFrame {
         VitalSignsTimestampTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         VitalSignsRecordedByLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        VitalSignsRecordedByLabel.setText("Recorded by");
-
-        VitalSignsRecordedByTextField.setEditable(false);
-        VitalSignsRecordedByTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        VitalSignsRecordedByLabel.setText("Patient ID");
 
         BloodPressureLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         BloodPressureLabel.setText("Blood Pressure");
@@ -322,17 +345,11 @@ public class AddHealthRecord extends javax.swing.JFrame {
         RespiratoryRateLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         RespiratoryRateLabel.setText("Respiratory Rate");
 
-        RespiratoryRateTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        RespiratoryRateTextField.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-
         RespiratoryRateUnitLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         RespiratoryRateUnitLabel.setText("BPM");
 
         TemperatureLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         TemperatureLabel.setText("Temperature");
-
-        TemperatureTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        TemperatureTextField.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
 
         TemperatureUnitLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         TemperatureUnitLabel.setText("°C");
@@ -371,6 +388,12 @@ public class AddHealthRecord extends javax.swing.JFrame {
             }
         });
 
+        TemperatureTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        TemperatureTextField.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+
+        RespiratoryRateTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        RespiratoryRateTextField.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+
         javax.swing.GroupLayout VitalSignsPanelLayout = new javax.swing.GroupLayout(VitalSignsPanel);
         VitalSignsPanel.setLayout(VitalSignsPanelLayout);
         VitalSignsPanelLayout.setHorizontalGroup(
@@ -379,63 +402,66 @@ public class AddHealthRecord extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(VitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(VitalSignsPanelLayout.createSequentialGroup()
-                        .addComponent(VitalSignsTimestampLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(VitalSignsTimestampTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(VitalSignsPanelLayout.createSequentialGroup()
                         .addGroup(VitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(BloodPressureLabel)
-                            .addComponent(HeartRateLabel))
-                        .addGap(32, 32, 32)
-                        .addGroup(VitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(HeartRateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BloodPressureTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(VitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(BloodPressureUnitLabel)
-                            .addComponent(HeartRateUnitLabel)))
-                    .addGroup(VitalSignsPanelLayout.createSequentialGroup()
-                        .addGroup(VitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(RespiratoryRateLabel)
-                            .addComponent(TemperatureLabel))
-                        .addGap(18, 18, 18)
-                        .addGroup(VitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(RespiratoryRateTextField)
-                            .addComponent(TemperatureTextField))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(VitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(RespiratoryRateUnitLabel)
-                            .addComponent(TemperatureUnitLabel))))
-                .addGap(18, 18, 18)
-                .addGroup(VitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(VitalSignsPanelLayout.createSequentialGroup()
-                        .addComponent(VitalSignsRecordedByLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(VitalSignsRecordedByTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(VitalSignsPanelLayout.createSequentialGroup()
-                        .addGroup(VitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(BodyMassIndexLabel)
-                            .addComponent(WeightLabel)
-                            .addComponent(HeightLabel))
+                            .addGroup(VitalSignsPanelLayout.createSequentialGroup()
+                                .addComponent(VitalSignsTimestampLabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(VitalSignsTimestampTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(VitalSignsPanelLayout.createSequentialGroup()
+                                .addGroup(VitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(BloodPressureLabel)
+                                    .addComponent(HeartRateLabel))
+                                .addGap(32, 32, 32)
+                                .addGroup(VitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(HeartRateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(BloodPressureTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(VitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(BloodPressureUnitLabel)
+                                    .addComponent(HeartRateUnitLabel)))
+                            .addGroup(VitalSignsPanelLayout.createSequentialGroup()
+                                .addGroup(VitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(TemperatureTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(VitalSignsPanelLayout.createSequentialGroup()
+                                        .addGroup(VitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(RespiratoryRateLabel)
+                                            .addComponent(TemperatureLabel))
+                                        .addGap(19, 19, 19)
+                                        .addComponent(RespiratoryRateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(VitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(RespiratoryRateUnitLabel)
+                                    .addComponent(TemperatureUnitLabel))))
                         .addGap(18, 18, 18)
                         .addGroup(VitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(VitalSignsPanelLayout.createSequentialGroup()
-                                .addComponent(HeightTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(HeightUnitLabel))
+                                .addComponent(VitalSignsRecordedByLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(VSPatientCom, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(VitalSignsPanelLayout.createSequentialGroup()
-                                .addComponent(BodyMassIndexTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BodyMassIndexUUnitLabel))
-                            .addGroup(VitalSignsPanelLayout.createSequentialGroup()
-                                .addComponent(WeightTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(WeightUnitLabel)))))
-                .addContainerGap(114, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VitalSignsPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(addVitalSigns, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                                .addGroup(VitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(BodyMassIndexLabel)
+                                    .addComponent(WeightLabel)
+                                    .addComponent(HeightLabel))
+                                .addGap(18, 18, 18)
+                                .addGroup(VitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(VitalSignsPanelLayout.createSequentialGroup()
+                                        .addComponent(HeightTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(HeightUnitLabel))
+                                    .addGroup(VitalSignsPanelLayout.createSequentialGroup()
+                                        .addComponent(BodyMassIndexTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(BodyMassIndexUUnitLabel))
+                                    .addGroup(VitalSignsPanelLayout.createSequentialGroup()
+                                        .addComponent(WeightTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(WeightUnitLabel)))))
+                        .addContainerGap(160, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VitalSignsPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(addVitalSigns, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))))
         );
         VitalSignsPanelLayout.setVerticalGroup(
             VitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -445,7 +471,7 @@ public class AddHealthRecord extends javax.swing.JFrame {
                     .addComponent(VitalSignsTimestampLabel)
                     .addComponent(VitalSignsTimestampTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(VitalSignsRecordedByLabel)
-                    .addComponent(VitalSignsRecordedByTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(VSPatientCom, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(VitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BloodPressureLabel)
@@ -466,17 +492,17 @@ public class AddHealthRecord extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(VitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(RespiratoryRateLabel)
-                    .addComponent(RespiratoryRateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(RespiratoryRateUnitLabel)
                     .addComponent(BodyMassIndexLabel)
                     .addComponent(BodyMassIndexTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BodyMassIndexUUnitLabel))
+                    .addComponent(BodyMassIndexUUnitLabel)
+                    .addComponent(RespiratoryRateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(VitalSignsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TemperatureLabel)
-                    .addComponent(TemperatureTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TemperatureUnitLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
+                    .addComponent(TemperatureUnitLabel)
+                    .addComponent(TemperatureTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
                 .addComponent(addVitalSigns, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
@@ -490,10 +516,7 @@ public class AddHealthRecord extends javax.swing.JFrame {
         MedicalHistoryTimestampTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         MedicalHistoryRecordedByLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        MedicalHistoryRecordedByLabel.setText("Recorded by");
-
-        MedicalHistoryRecordedByTextField.setEditable(false);
-        MedicalHistoryRecordedByTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        MedicalHistoryRecordedByLabel.setText("Patient ID");
 
         AllergyLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         AllergyLabel.setText("Allergy");
@@ -556,9 +579,9 @@ public class AddHealthRecord extends javax.swing.JFrame {
                         .addComponent(MedicalHistoryTimestampTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(MedicalHistoryRecordedByLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(MedicalHistoryRecordedByTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 108, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(MHPatientCom, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(154, 154, 154))
                     .addGroup(MedicalHistoryPanelLayout.createSequentialGroup()
                         .addComponent(PastSurgicalHistoryLabel)
                         .addGap(31, 31, 31)
@@ -576,7 +599,7 @@ public class AddHealthRecord extends javax.swing.JFrame {
                     .addComponent(MedicalHistoryTimestampLabel)
                     .addComponent(MedicalHistoryTimestampTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(MedicalHistoryRecordedByLabel)
-                    .addComponent(MedicalHistoryRecordedByTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(MHPatientCom, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(MedicalHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AllergyLabel)
@@ -597,7 +620,7 @@ public class AddHealthRecord extends javax.swing.JFrame {
                 .addGroup(MedicalHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PastSurgicalHistoryLabel)
                     .addComponent(PastSurgicalHistoryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
                 .addComponent(addMedicalHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
@@ -611,10 +634,7 @@ public class AddHealthRecord extends javax.swing.JFrame {
         BloodTestTimestampTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         BloodTestRecordedByLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        BloodTestRecordedByLabel.setText("Recorded by");
-
-        BloodTestRecordedByTextField.setEditable(false);
-        BloodTestRecordedByTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        BloodTestRecordedByLabel.setText("Patient ID");
 
         BloodTestTabbedPane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -733,7 +753,7 @@ public class AddHealthRecord extends javax.swing.JFrame {
                     .addComponent(PlateletCountLabel)
                     .addComponent(PlateletCountTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PlateletCountUnitLabel))
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
 
         BloodTestTabbedPane.addTab("Complete Blood Count", CompleteBloodCountPanel);
@@ -866,7 +886,7 @@ public class AddHealthRecord extends javax.swing.JFrame {
                     .addComponent(SodiumLevelLabel)
                     .addComponent(SodiumLevelTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SodiumLevelUnitLabel))
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         BloodTestTabbedPane.addTab("Basic Metabolic Panel", BasicMetabolicPanelPanel);
@@ -923,7 +943,7 @@ public class AddHealthRecord extends javax.swing.JFrame {
                     .addComponent(TriglyceridesLevelLabel)
                     .addComponent(TriglyceridesLevelTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TriglyceridesLevelUnitLabel))
-                .addContainerGap(261, Short.MAX_VALUE))
+                .addContainerGap(259, Short.MAX_VALUE))
         );
 
         BloodTestTabbedPane.addTab("Lipid Panel", LipidPanelPanel);
@@ -1018,7 +1038,7 @@ public class AddHealthRecord extends javax.swing.JFrame {
                     .addComponent(BilirubinLevelLabel)
                     .addComponent(BilirubinLevelTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BilirubinLevelUnitLabel))
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addContainerGap(167, Short.MAX_VALUE))
         );
 
         BloodTestTabbedPane.addTab("Liver Function Tests", LiverFunctionTestsPanel);
@@ -1050,10 +1070,10 @@ public class AddHealthRecord extends javax.swing.JFrame {
         ThyroxineLevelUnitLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         ThyroxineLevelUnitLabel.setText("mcg/dL");
 
-        addMedicalHistory5.setText("Add");
-        addMedicalHistory5.addActionListener(new java.awt.event.ActionListener() {
+        addBloodTest.setText("Add");
+        addBloodTest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addMedicalHistory5ActionPerformed(evt);
+                addBloodTestActionPerformed(evt);
             }
         });
 
@@ -1084,7 +1104,7 @@ public class AddHealthRecord extends javax.swing.JFrame {
                 .addContainerGap(336, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ThyroidFunctionTestsPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(addMedicalHistory5, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addBloodTest, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
         ThyroidFunctionTestsPanelLayout.setVerticalGroup(
@@ -1105,8 +1125,8 @@ public class AddHealthRecord extends javax.swing.JFrame {
                     .addComponent(ThyroxineLevelLabel)
                     .addComponent(ThyroxineLevelTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ThyroxineLevelUnitLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
-                .addComponent(addMedicalHistory5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
+                .addComponent(addBloodTest, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
 
@@ -1123,9 +1143,9 @@ public class AddHealthRecord extends javax.swing.JFrame {
                 .addComponent(BloodTestTimestampTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BloodTestRecordedByLabel)
-                .addGap(18, 18, 18)
-                .addComponent(BloodTestRecordedByTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BTPatientCom, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(160, 160, 160))
             .addComponent(BloodTestTabbedPane, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         BloodTestPanelLayout.setVerticalGroup(
@@ -1136,7 +1156,7 @@ public class AddHealthRecord extends javax.swing.JFrame {
                     .addComponent(BloodTestTimestampLabel)
                     .addComponent(BloodTestTimestampTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BloodTestRecordedByLabel)
-                    .addComponent(BloodTestRecordedByTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BTPatientCom, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(BloodTestTabbedPane))
         );
@@ -1150,10 +1170,7 @@ public class AddHealthRecord extends javax.swing.JFrame {
         UrineTestTimestampTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         UrineTestRecordedByLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        UrineTestRecordedByLabel.setText("Recorded by");
-
-        UrineTestRecordedByTextField.setEditable(false);
-        UrineTestRecordedByTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        UrineTestRecordedByLabel.setText("Patient ID");
 
         UrineTestTabbedPane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -1231,7 +1248,7 @@ public class AddHealthRecord extends javax.swing.JFrame {
                 .addGroup(UrineAppearanceAndCompositionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(UrineSpecificGravityLabel)
                     .addComponent(UrineSpecificGravityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addContainerGap(167, Short.MAX_VALUE))
         );
 
         UrineTestTabbedPane.addTab("Urine Appearance & Composition", UrineAppearanceAndCompositionPanel);
@@ -1305,7 +1322,7 @@ public class AddHealthRecord extends javax.swing.JFrame {
                 .addGroup(UrineChemicalAnalysisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(UrineChemicalAnalysisPanelLayout.createSequentialGroup()
                         .addComponent(UrineBilirubinLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                         .addComponent(UrineBilirubinTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(UrineChemicalAnalysisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(UrineBloodTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1314,71 +1331,81 @@ public class AddHealthRecord extends javax.swing.JFrame {
                                 .addComponent(UrineGlucoseLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(UrineGlucoseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, UrineChemicalAnalysisPanelLayout.createSequentialGroup()
+                                .addComponent(UrineKetonesLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                                .addComponent(UrineKetonesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(UrineBloodLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(UrineChemicalAnalysisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(UrineChemicalAnalysisPanelLayout.createSequentialGroup()
+                        .addComponent(UrineKetonesUnitLabel)
+                        .addContainerGap(482, Short.MAX_VALUE))
+                    .addGroup(UrineChemicalAnalysisPanelLayout.createSequentialGroup()
+                        .addGroup(UrineChemicalAnalysisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(UrineGlucoseUnitLabel)
+                            .addComponent(UrineBloodUnitLabel)
+                            .addComponent(UrineBilirubinUnitLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(UrineChemicalAnalysisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(UrineChemicalAnalysisPanelLayout.createSequentialGroup()
                                 .addComponent(UrineProteinLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(UrineProteinTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(UrineChemicalAnalysisPanelLayout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, UrineChemicalAnalysisPanelLayout.createSequentialGroup()
                                 .addComponent(UrineNitritesLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(UrineNitritesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, UrineChemicalAnalysisPanelLayout.createSequentialGroup()
-                                .addComponent(UrineKetonesLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(UrineKetonesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(UrineNitritesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, UrineChemicalAnalysisPanelLayout.createSequentialGroup()
                                 .addComponent(UrineLeukocytesLabel)
                                 .addGap(18, 18, 18)
-                                .addComponent(UrineLeukocytesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(UrineBloodLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(UrineChemicalAnalysisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(UrineProteinUnitLabel)
-                    .addComponent(UrineLeukocytesUnitLabel)
-                    .addComponent(UrineKetonesUnitLabel)
-                    .addComponent(UrineGlucoseUnitLabel)
-                    .addComponent(UrineBloodUnitLabel)
-                    .addComponent(UrineBilirubinUnitLabel))
-                .addContainerGap(468, Short.MAX_VALUE))
+                                .addComponent(UrineLeukocytesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(UrineChemicalAnalysisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(UrineProteinUnitLabel)
+                            .addComponent(UrineLeukocytesUnitLabel))
+                        .addGap(77, 77, 77))))
         );
         UrineChemicalAnalysisPanelLayout.setVerticalGroup(
             UrineChemicalAnalysisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(UrineChemicalAnalysisPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(UrineChemicalAnalysisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(UrineBilirubinLabel)
-                    .addComponent(UrineBilirubinTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(UrineBilirubinUnitLabel))
-                .addGap(18, 18, 18)
-                .addGroup(UrineChemicalAnalysisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(UrineBloodLabel)
-                    .addComponent(UrineBloodTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(UrineBloodUnitLabel))
-                .addGap(18, 18, 18)
-                .addGroup(UrineChemicalAnalysisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(UrineGlucoseLabel)
-                    .addComponent(UrineGlucoseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(UrineGlucoseUnitLabel))
+                .addGroup(UrineChemicalAnalysisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(UrineChemicalAnalysisPanelLayout.createSequentialGroup()
+                        .addGroup(UrineChemicalAnalysisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(UrineBilirubinLabel)
+                            .addComponent(UrineBilirubinTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(UrineBilirubinUnitLabel))
+                        .addGap(18, 18, 18)
+                        .addGroup(UrineChemicalAnalysisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(UrineBloodLabel)
+                            .addComponent(UrineBloodTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(UrineBloodUnitLabel))
+                        .addGap(18, 18, 18)
+                        .addGroup(UrineChemicalAnalysisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(UrineGlucoseLabel)
+                            .addComponent(UrineGlucoseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(UrineGlucoseUnitLabel)))
+                    .addGroup(UrineChemicalAnalysisPanelLayout.createSequentialGroup()
+                        .addGroup(UrineChemicalAnalysisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(UrineLeukocytesLabel)
+                            .addComponent(UrineLeukocytesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(UrineLeukocytesUnitLabel))
+                        .addGap(18, 18, 18)
+                        .addGroup(UrineChemicalAnalysisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(UrineNitritesLabel)
+                            .addComponent(UrineNitritesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(UrineChemicalAnalysisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(UrineProteinLabel)
+                            .addComponent(UrineProteinTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(UrineProteinUnitLabel))))
                 .addGap(18, 18, 18)
                 .addGroup(UrineChemicalAnalysisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(UrineKetonesLabel)
                     .addComponent(UrineKetonesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(UrineKetonesUnitLabel))
-                .addGap(18, 18, 18)
-                .addGroup(UrineChemicalAnalysisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(UrineLeukocytesLabel)
-                    .addComponent(UrineLeukocytesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(UrineLeukocytesUnitLabel))
-                .addGap(18, 18, 18)
-                .addGroup(UrineChemicalAnalysisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(UrineNitritesLabel)
-                    .addComponent(UrineNitritesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(UrineChemicalAnalysisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(UrineProteinLabel)
-                    .addComponent(UrineProteinTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(UrineProteinUnitLabel))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(167, Short.MAX_VALUE))
         );
 
         UrineTestTabbedPane.addTab("Urine Chemical Analysis", UrineChemicalAnalysisPanel);
@@ -1464,10 +1491,10 @@ public class AddHealthRecord extends javax.swing.JFrame {
         UrineUricAcidUnitLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         UrineUricAcidUnitLabel.setText("mmol/24 hours");
 
-        addMedicalHistory6.setText("Add");
-        addMedicalHistory6.addActionListener(new java.awt.event.ActionListener() {
+        addUrineTest.setText("Add");
+        addUrineTest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addMedicalHistory6ActionPerformed(evt);
+                addUrineTestActionPerformed(evt);
             }
         });
 
@@ -1542,7 +1569,7 @@ public class AddHealthRecord extends javax.swing.JFrame {
                 .addContainerGap(11, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UrineBiochemistryPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(addMedicalHistory6, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addUrineTest, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );
         UrineBiochemistryPanelLayout.setVerticalGroup(
@@ -1586,8 +1613,8 @@ public class AddHealthRecord extends javax.swing.JFrame {
                     .addComponent(UrineMicroalbuminLabel)
                     .addComponent(UrineMicroalbuminTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(UrineMicroalbuminUnitLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                .addComponent(addMedicalHistory6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addComponent(addUrineTest, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
 
@@ -1604,9 +1631,9 @@ public class AddHealthRecord extends javax.swing.JFrame {
                 .addComponent(UrineTestTimestampTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(UrineTestRecordedByLabel)
-                .addGap(18, 18, 18)
-                .addComponent(UrineTestRecordedByTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(UTPatientCom, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(160, 160, 160))
             .addComponent(UrineTestTabbedPane, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         UrineTestPanelLayout.setVerticalGroup(
@@ -1617,9 +1644,9 @@ public class AddHealthRecord extends javax.swing.JFrame {
                     .addComponent(UrineTestTimestampLabel)
                     .addComponent(UrineTestTimestampTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(UrineTestRecordedByLabel)
-                    .addComponent(UrineTestRecordedByTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(UTPatientCom, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(UrineTestTabbedPane))
+                .addComponent(UrineTestTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         HealthRecordTabbedPane.addTab("Urine Test", UrineTestPanel);
@@ -1631,10 +1658,7 @@ public class AddHealthRecord extends javax.swing.JFrame {
         MedicalInfoTimestampTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         MedicalInfoRecordedByLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        MedicalInfoRecordedByLabel.setText("Recorded by");
-
-        MedicalInfoRecordedByTextField.setEditable(false);
-        MedicalInfoRecordedByTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        MedicalInfoRecordedByLabel.setText("Patient ID");
 
         PrescriptionMedicationsLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         PrescriptionMedicationsLabel.setText("Prescription Medications");
@@ -1668,10 +1692,10 @@ public class AddHealthRecord extends javax.swing.JFrame {
 
         TreatmentGoalTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        addMedicalHistory3.setText("Add");
-        addMedicalHistory3.addActionListener(new java.awt.event.ActionListener() {
+        addMedicalInfo.setText("Add");
+        addMedicalInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addMedicalHistory3ActionPerformed(evt);
+                addMedicalInfoActionPerformed(evt);
             }
         });
 
@@ -1692,8 +1716,9 @@ public class AddHealthRecord extends javax.swing.JFrame {
                         .addComponent(MedicalInfoTimestampTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(MedicalInfoRecordedByLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(MedicalInfoRecordedByTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(MIPatientCom, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(154, 154, 154))
                     .addGroup(MedicalInfoPanelLayout.createSequentialGroup()
                         .addGroup(MedicalInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(DosagesLabel)
@@ -1712,7 +1737,7 @@ public class AddHealthRecord extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MedicalInfoPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(addMedicalHistory3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addMedicalInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
         MedicalInfoPanelLayout.setVerticalGroup(
@@ -1723,7 +1748,7 @@ public class AddHealthRecord extends javax.swing.JFrame {
                     .addComponent(MedicalInfoTimestampLabel)
                     .addComponent(MedicalInfoTimestampTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(MedicalInfoRecordedByLabel)
-                    .addComponent(MedicalInfoRecordedByTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(MIPatientCom, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(MedicalInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(PrescriptionMedicationsLabel)
@@ -1745,8 +1770,8 @@ public class AddHealthRecord extends javax.swing.JFrame {
                 .addGroup(MedicalInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TreatmentGoalLabel)
                     .addComponent(TreatmentGoalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(addMedicalHistory3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(addMedicalInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
 
@@ -1759,15 +1784,10 @@ public class AddHealthRecord extends javax.swing.JFrame {
         HospitalizationTimestampTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         HospitalizationRecordedByLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        HospitalizationRecordedByLabel.setText("Recorded by");
-
-        HospitalizationRecordedByTextField.setEditable(false);
-        HospitalizationRecordedByTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        HospitalizationRecordedByLabel.setText("Patient ID");
 
         DateOfHospitalizationLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         DateOfHospitalizationLabel.setText("Date of Hospitalization");
-
-        DateOfHospitalizationTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         ReasonLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         ReasonLabel.setText("Reason");
@@ -1785,10 +1805,10 @@ public class AddHealthRecord extends javax.swing.JFrame {
         DischargeSummaryTextArea.setRows(5);
         jScrollPane3.setViewportView(DischargeSummaryTextArea);
 
-        addMedicalHistory2.setText("Add");
-        addMedicalHistory2.addActionListener(new java.awt.event.ActionListener() {
+        addHospitalization.setText("Add");
+        addHospitalization.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addMedicalHistory2ActionPerformed(evt);
+                addHospitalizationActionPerformed(evt);
             }
         });
 
@@ -1798,31 +1818,29 @@ public class AddHealthRecord extends javax.swing.JFrame {
             HospitalizationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HospitalizationPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(HospitalizationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(HospitalizationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(HospitalizationPanelLayout.createSequentialGroup()
                         .addComponent(HospitalizationTimestampLabel)
                         .addGap(18, 18, 18)
                         .addComponent(HospitalizationTimestampTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(HospitalizationRecordedByLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(HospitalizationRecordedByTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(HPPatientCom, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(HospitalizationPanelLayout.createSequentialGroup()
                         .addGroup(HospitalizationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(DateOfHospitalizationLabel)
                             .addComponent(ReasonLabel)
                             .addComponent(DischargeSummaryLabel))
                         .addGap(18, 18, 18)
-                        .addGroup(HospitalizationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(HospitalizationPanelLayout.createSequentialGroup()
-                                .addComponent(DateOfHospitalizationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane2)
-                            .addComponent(jScrollPane3))))
-                .addContainerGap(114, Short.MAX_VALUE))
+                        .addGroup(HospitalizationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3)
+                            .addComponent(dateOfHospitalizationChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(133, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HospitalizationPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(addMedicalHistory2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addHospitalization, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
         HospitalizationPanelLayout.setVerticalGroup(
@@ -1833,11 +1851,11 @@ public class AddHealthRecord extends javax.swing.JFrame {
                     .addComponent(HospitalizationTimestampLabel)
                     .addComponent(HospitalizationTimestampTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(HospitalizationRecordedByLabel)
-                    .addComponent(HospitalizationRecordedByTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(HPPatientCom, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(HospitalizationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(HospitalizationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(DateOfHospitalizationLabel)
-                    .addComponent(DateOfHospitalizationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dateOfHospitalizationChooser, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(HospitalizationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ReasonLabel)
@@ -1846,8 +1864,8 @@ public class AddHealthRecord extends javax.swing.JFrame {
                 .addGroup(HospitalizationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(DischargeSummaryLabel)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addComponent(addMedicalHistory2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(addHospitalization, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
 
@@ -1860,15 +1878,10 @@ public class AddHealthRecord extends javax.swing.JFrame {
         VaccinationTimestampTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         VaccinationRecordedByLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        VaccinationRecordedByLabel.setText("Recorded by");
-
-        VaccinationRecordedByTextField.setEditable(false);
-        VaccinationRecordedByTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        VaccinationRecordedByLabel.setText("Patient ID");
 
         DateOfVaccinationLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         DateOfVaccinationLabel.setText("Date of Vaccination");
-
-        DateOfVaccinationTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         TypesOfImmunizationsLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         TypesOfImmunizationsLabel.setText("Types of Immunizations");
@@ -1881,10 +1894,10 @@ public class AddHealthRecord extends javax.swing.JFrame {
 
         DosesAdministeredTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        addMedicalHistory1.setText("Add");
-        addMedicalHistory1.addActionListener(new java.awt.event.ActionListener() {
+        addVaccination.setText("Add");
+        addVaccination.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addMedicalHistory1ActionPerformed(evt);
+                addVaccinationActionPerformed(evt);
             }
         });
 
@@ -1892,6 +1905,10 @@ public class AddHealthRecord extends javax.swing.JFrame {
         VaccinationPanel.setLayout(VaccinationPanelLayout);
         VaccinationPanelLayout.setHorizontalGroup(
             VaccinationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VaccinationPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(addVaccination, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
             .addGroup(VaccinationPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(VaccinationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -1908,16 +1925,14 @@ public class AddHealthRecord extends javax.swing.JFrame {
                             .addComponent(DosesAdministeredLabel))
                         .addGap(18, 18, 18)
                         .addGroup(VaccinationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(DosesAdministeredTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(DateOfVaccinationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TypesOfImmunizationsTextField))))
-                .addGap(18, 18, 18)
-                .addComponent(VaccinationRecordedByTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(114, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VaccinationPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(addMedicalHistory1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                            .addComponent(TypesOfImmunizationsTextField)
+                            .addGroup(VaccinationPanelLayout.createSequentialGroup()
+                                .addComponent(DosesAdministeredTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(DateOfVaccinationChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(VCPatientCom, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(160, Short.MAX_VALUE))
         );
         VaccinationPanelLayout.setVerticalGroup(
             VaccinationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1927,11 +1942,11 @@ public class AddHealthRecord extends javax.swing.JFrame {
                     .addComponent(VaccinationTimestampLabel)
                     .addComponent(VaccinationTimestampTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(VaccinationRecordedByLabel)
-                    .addComponent(VaccinationRecordedByTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(VCPatientCom, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(VaccinationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(VaccinationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(DateOfVaccinationLabel)
-                    .addComponent(DateOfVaccinationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(DateOfVaccinationChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(VaccinationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TypesOfImmunizationsLabel)
@@ -1940,8 +1955,8 @@ public class AddHealthRecord extends javax.swing.JFrame {
                 .addGroup(VaccinationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DosesAdministeredLabel)
                     .addComponent(DosesAdministeredTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 204, Short.MAX_VALUE)
-                .addComponent(addMedicalHistory1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
+                .addComponent(addVaccination, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
 
@@ -1983,11 +1998,31 @@ public class AddHealthRecord extends javax.swing.JFrame {
 
     private void addMedicalHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMedicalHistoryActionPerformed
         try {
+            String patientID = MHPatientCom.getSelectedItem().toString();
+            // Check patient-doctor permission
+            if (!DataIO.PermissionIO.checkPermission(patientID, doctorID)) {
+                JOptionPane.showMessageDialog(null, "Permission to write not granted by the patient.", 
+                        "Missing Permission", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
             String allergy = AllergyTextField.getText();
             String medication = MedicationTextField.getText();
             String chronicCondition = ChronicConditionTextField.getText();
             String familyMedicalHistory = FamilyMedicalHistoryTextField.getText();
             String pastSurgicalHistory = PastSurgicalHistoryTextField.getText();
+            
+            // Check if any of the strings are empty or null
+            if (patientID == null || patientID.isEmpty() ||
+                allergy == null || allergy.isEmpty() ||
+                medication == null || medication.isEmpty() ||
+                chronicCondition == null || chronicCondition.isEmpty() ||
+                familyMedicalHistory == null || familyMedicalHistory.isEmpty() ||
+                pastSurgicalHistory == null || pastSurgicalHistory.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please input all the required data for medical history.", 
+                        "Missing Value", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            
             // Initiate new record from user input
             MedicalHistory newRecord = new MedicalHistory(allergy, medication, chronicCondition,
                     pastSurgicalHistory, familyMedicalHistory, doctorID);
@@ -1997,36 +2032,528 @@ public class AddHealthRecord extends javax.swing.JFrame {
             
             // Obtain the signature with doctor private key
             String signedMsg = hrIO.signTransaction(encrypted, doctorID);
-            
+            // Add to Blockchain
             BlockIO.addNewBlock(patientID, doctorID, "MedicalHistory", encrypted, signedMsg);
+            
+            // Add to patient's health record
+            DataIO.PatientIO.checkPatient(patientID).getMyHealthRecord().getMedicalHistories().add(newRecord);
+            
+            JOptionPane.showMessageDialog(null, "Medical History Record created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            AllergyTextField.setText("");
+            MedicationTextField.setText("");
+            ChronicConditionTextField.setText("");
+            FamilyMedicalHistoryTextField.setText("");
+            PastSurgicalHistoryTextField.setText("");
+
         } catch (Exception ex) {
             System.out.println("Fail to add new record ...");
         }
     }//GEN-LAST:event_addMedicalHistoryActionPerformed
 
-    private void addMedicalHistory1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMedicalHistory1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addMedicalHistory1ActionPerformed
+    private void addVaccinationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addVaccinationActionPerformed
+        try {
+            String patientID = VCPatientCom.getSelectedItem().toString();
+            // Check patient-doctor permission
+            if (!DataIO.PermissionIO.checkPermission(patientID, doctorID)) {
+                JOptionPane.showMessageDialog(null, "Permission to write not granted by the patient.", 
+                        "Missing Permission", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            Date dateOfVaccination = DateOfVaccinationChooser.getDate();
+            String dateOfVaccinationString = "";
 
-    private void addMedicalHistory2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMedicalHistory2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addMedicalHistory2ActionPerformed
+            // Format the selected date into a String using SimpleDateFormat
+            if (dateOfVaccination != null) {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                dateOfVaccinationString = dateFormat.format(dateOfVaccination);
+            }
 
-    private void addMedicalHistory3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMedicalHistory3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addMedicalHistory3ActionPerformed
+            // Retrieve text from JTextFields
+            String typesOfImmunizations = TypesOfImmunizationsTextField.getText();
+            String dosesAdministered = DosesAdministeredTextField.getText();
+
+            // Check if any of the fields are empty or null
+            if (patientID == null || patientID.isEmpty() ||
+                dateOfVaccinationString.isEmpty() ||
+                typesOfImmunizations == null || typesOfImmunizations.isEmpty() ||
+                dosesAdministered == null || dosesAdministered.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please input all the required data for vaccination.", 
+                        "Missing Value", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            
+            // Initiate new record from user input
+            Vaccination newRecord = new Vaccination(dateOfVaccinationString, typesOfImmunizations, 
+                    Double.parseDouble(dosesAdministered), doctorID);
+            
+            // Encrypted the record before adding to blockchain
+            String encrypted = hrIO.encryptRecord(newRecord.toString());
+            
+            // Obtain the signature with doctor private key
+            String signedMsg = hrIO.signTransaction(encrypted, doctorID);
+            // Add to Blockchain
+            BlockIO.addNewBlock(patientID, doctorID, "Vaccination", encrypted, signedMsg);
+            
+            // Add to patient's health record
+            DataIO.PatientIO.checkPatient(patientID).getMyHealthRecord().getVaccinations().add(newRecord);
+            
+            JOptionPane.showMessageDialog(null, "Vaccination Record created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            TypesOfImmunizationsTextField.setText("");
+            DosesAdministeredTextField.setText("");
+        } catch (Exception ex) {
+            System.out.println("Fail to add new record ...");
+        } 
+    }//GEN-LAST:event_addVaccinationActionPerformed
+
+    private void addHospitalizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addHospitalizationActionPerformed
+        try {
+            String patientID = HPPatientCom.getSelectedItem().toString();
+            // Check patient-doctor permission
+            if (!DataIO.PermissionIO.checkPermission(patientID, doctorID)) {
+                JOptionPane.showMessageDialog(null, "Permission to write not granted by the patient.", 
+                        "Missing Permission", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            Date dateOfHospitalization = dateOfHospitalizationChooser.getDate();
+            // Format the selected date into a String using SimpleDateFormat
+            String dateOfHospitalizationString = "";
+            if (dateOfHospitalization != null) {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                dateOfHospitalizationString = dateFormat.format(dateOfHospitalization);
+            }
+
+            // Retrieve text from JTextAreas
+            String reason = ReasonTextArea.getText();
+            String dischargeSummary = DischargeSummaryTextArea.getText();
+
+            // Check if any of the fields are empty or null
+            if (patientID == null || patientID.isEmpty() ||
+                dateOfHospitalizationString == null || dateOfHospitalizationString.isEmpty() ||
+                reason == null || reason.isEmpty() ||
+                dischargeSummary == null || dischargeSummary.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please input all the required data for Hospitalization.", 
+                        "Missing Value", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            
+            // Initiate new record from user input
+            Hospitalization newRecord = new Hospitalization(dateOfHospitalizationString, reason, dischargeSummary, doctorID);
+            
+            // Encrypted the record before adding to blockchain
+            String encrypted = hrIO.encryptRecord(newRecord.toString());
+            
+            // Obtain the signature with doctor private key
+            String signedMsg = hrIO.signTransaction(encrypted, doctorID);
+            
+            // Add to Blockchain
+            BlockIO.addNewBlock(patientID, doctorID, "Hospitalization", encrypted, signedMsg);
+            // Add to patient's health record
+            DataIO.PatientIO.checkPatient(patientID).getMyHealthRecord().getHospitalizations().add(newRecord);
+            
+            JOptionPane.showMessageDialog(null, "Hospitalization Record created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            ReasonTextArea.setText("");
+            DischargeSummaryTextArea.setText("");
+        } catch (Exception ex) {
+            System.out.println("Fail to add new record ...");
+        }                          
+    }//GEN-LAST:event_addHospitalizationActionPerformed
+
+    private void addMedicalInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMedicalInfoActionPerformed
+        try {
+            String patientID = MIPatientCom.getSelectedItem().toString();
+            // Check patient-doctor permission
+            if (!DataIO.PermissionIO.checkPermission(patientID, doctorID)) {
+                JOptionPane.showMessageDialog(null, "Permission to write not granted by the patient.", 
+                        "Missing Permission", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            String prescriptionMedications = PrescriptionMedicationsTextArea.getText();
+            String dosages = DosagesTextField.getText();
+            String frequencyOfUse = FrequencyOfUseTextField.getText();
+            String mealRequirement = MealRequirementTextField.getText();
+            String treatmentGoal = TreatmentGoalTextField.getText();
+
+            // Check if any of the strings are empty or null
+            if (patientID == null || patientID.isEmpty() ||
+                prescriptionMedications == null || prescriptionMedications.isEmpty() ||
+                dosages == null || dosages.isEmpty() ||
+                frequencyOfUse == null || frequencyOfUse.isEmpty() ||
+                mealRequirement == null || mealRequirement.isEmpty() ||
+                treatmentGoal == null || treatmentGoal.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please input all the required medical information.", 
+                        "Missing Value", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            
+            // Initiate new record from user input
+            MedicalInformation newRecord = new MedicalInformation(prescriptionMedications, dosages, 
+                    frequencyOfUse, mealRequirement, treatmentGoal, doctorID);
+            
+            // Encrypted the record before adding to blockchain
+            String encrypted = hrIO.encryptRecord(newRecord.toString());
+            
+            // Obtain the signature with doctor private key
+            String signedMsg = hrIO.signTransaction(encrypted, doctorID);
+            
+            // Add to Blockchain
+            BlockIO.addNewBlock(patientID, doctorID, "MedicalInformation", encrypted, signedMsg);
+            
+            // Add to patient's health record
+            DataIO.PatientIO.checkPatient(patientID).getMyHealthRecord().getMedicalInformations().add(newRecord);
+            
+            JOptionPane.showMessageDialog(null, "Medical Information Record created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            PrescriptionMedicationsTextArea.setText("");
+            DosagesTextField.setText("");
+            FrequencyOfUseTextField.setText("");
+            MealRequirementTextField.setText("");
+            TreatmentGoalTextField.setText("");
+        } catch (Exception ex) {
+            System.out.println("Fail to add new record ...");
+        }                    
+    }//GEN-LAST:event_addMedicalInfoActionPerformed
 
     private void addVitalSignsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addVitalSignsActionPerformed
-        // TODO add your handling code here:
+        try {
+            String patientID = VSPatientCom.getSelectedItem().toString();
+            // Check patient-doctor permission
+            if (!DataIO.PermissionIO.checkPermission(patientID, doctorID)) {
+                JOptionPane.showMessageDialog(null, "Permission to write not granted by the patient.", 
+                        "Missing Permission", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            String bloodPressure = BloodPressureTextField.getText();
+            String heartRate = HeartRateTextField.getText();
+            String respiratoryRate = RespiratoryRateTextField.getText();
+            String temperature = TemperatureTextField.getText();
+            String height = HeightTextField.getText();
+            String weight = WeightTextField.getText();
+            String bodyMassIndex = BodyMassIndexTextField.getText();
+
+            // Check if any of the strings are empty or null
+            if (patientID == null || patientID.isEmpty() ||
+                bloodPressure == null || bloodPressure.isEmpty() ||
+                heartRate == null || heartRate.isEmpty() ||
+                respiratoryRate == null || respiratoryRate.isEmpty() ||
+                temperature == null || temperature.isEmpty() ||
+                height == null || height.isEmpty() ||
+                weight == null || weight.isEmpty() ||
+                bodyMassIndex == null || bodyMassIndex.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please input all the required data for vital signs.", 
+                        "Missing Value", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            
+            // Initiate new record from user input
+            VitalSign newRecord = new VitalSign(Integer.parseInt(bloodPressure), Integer.parseInt(heartRate), 
+                    Integer.parseInt(respiratoryRate), Double.parseDouble(temperature), Double.parseDouble(height), 
+                    Double.parseDouble(weight), Double.parseDouble(bodyMassIndex), doctorID);
+            
+            // Encrypted the record before adding to blockchain
+            String encrypted = hrIO.encryptRecord(newRecord.toString());
+            
+            // Obtain the signature with doctor private key
+            String signedMsg = hrIO.signTransaction(encrypted, doctorID);
+            
+            // Add to Blockchain
+            BlockIO.addNewBlock(patientID, doctorID, "VitalSign", encrypted, signedMsg);
+            
+            // Add to patient's health record
+            DataIO.PatientIO.checkPatient(patientID).getMyHealthRecord().getVitalSigns().add(newRecord);
+            
+            JOptionPane.showMessageDialog(null, "Vital Sign Record created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            BloodPressureTextField.setText("");
+            HeartRateTextField.setText("");
+            RespiratoryRateTextField.setText("");
+            TemperatureTextField.setText("");
+            HeightTextField.setText("");
+            WeightTextField.setText("");
+            BodyMassIndexTextField.setText("");
+        } catch (Exception ex) {
+            System.out.println("Fail to add new record ...");
+        }
     }//GEN-LAST:event_addVitalSignsActionPerformed
 
-    private void addMedicalHistory5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMedicalHistory5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addMedicalHistory5ActionPerformed
+    private void addBloodTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBloodTestActionPerformed
+        try {
+            String patientID = BTPatientCom.getSelectedItem().toString();
+            // Check patient-doctor permission
+            if (!DataIO.PermissionIO.checkPermission(patientID, doctorID)) {
+                JOptionPane.showMessageDialog(null, "Permission to write not granted by the patient.", 
+                        "Missing Permission", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            
+            // For Complete Blood Count
+            String whiteBloodCellCount = WhiteBloodCellCountTextField.getText();
+            String redBloodCellCount = RedBloodCellCountTextField.getText();
+            String hemoglobinLevel = HemoglobinLevelTextField.getText();
+            String hematocritLevel = HematocritLevelTextField.getText();
+            String plateletCount = PlateletCountTextField.getText();
 
-    private void addMedicalHistory6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMedicalHistory6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addMedicalHistory6ActionPerformed
+            if (whiteBloodCellCount == null || whiteBloodCellCount.isEmpty() ||
+                redBloodCellCount == null || redBloodCellCount.isEmpty() ||
+                hemoglobinLevel == null || hemoglobinLevel.isEmpty() ||
+                hematocritLevel == null || hematocritLevel.isEmpty() ||
+                plateletCount == null || plateletCount.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please input all the required data for Complete Blood Count.", 
+                        "Missing Value", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            // For Basic Metabolic Panel
+            String fastingBloodGlucoseLevel = FastingBloodGlucoseLevelTextField.getText();
+            String creatinineLevel = CreatinineLevelTextField.getText();
+            String bloodUreaNitrogenLevel = BloodUreaNitrogenLevelTextField.getText();
+            String calciumLevel = CalciumLevelTextField.getText();
+            String potassiumLevel = PotassiumLevelTextField.getText();
+            String sodiumLevel = SodiumLevelTextField.getText();
+
+            if (fastingBloodGlucoseLevel == null || fastingBloodGlucoseLevel.isEmpty() ||
+                creatinineLevel == null || creatinineLevel.isEmpty() ||
+                bloodUreaNitrogenLevel == null || bloodUreaNitrogenLevel.isEmpty() ||
+                calciumLevel == null || calciumLevel.isEmpty() ||
+                potassiumLevel == null || potassiumLevel.isEmpty() ||
+                sodiumLevel == null || sodiumLevel.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please input all the required data for Basic Metabolic Panel.", 
+                        "Missing Value", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            
+            // For Lipid Panel
+            String cholesterolLevel = CholesterolLevelTextField.getText();
+            String triglyceridesLevel = TriglyceridesLevelTextField.getText();
+
+            if (cholesterolLevel == null || cholesterolLevel.isEmpty() ||
+                triglyceridesLevel == null || triglyceridesLevel.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please input all the required data for Lipid Panel.", 
+                        "Missing Value", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            // For Liver Function Tests
+            String aspartateAminotransferaseLevel = AspartateAminotransferaseLevelTextField.getText();
+            String alanineAminotransferaseLevel = AlanineAminotransferaseLevelTextField.getText();
+            String alkalinePhosphataseLevel = AlkalinePhosphataseLevelTextField.getText();
+            String bilirubinLevel = BilirubinLevelTextField.getText();
+
+            if (aspartateAminotransferaseLevel == null || aspartateAminotransferaseLevel.isEmpty() ||
+                alanineAminotransferaseLevel == null || alanineAminotransferaseLevel.isEmpty() ||
+                alkalinePhosphataseLevel == null || alkalinePhosphataseLevel.isEmpty() ||
+                bilirubinLevel == null || bilirubinLevel.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please input all the required data for Liver Function Tests.", 
+                        "Missing Value", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            // For Thyroid Function Tests
+            String thyroidStimulatingHormoneLevel = ThyroidStimulatingHormoneLevelTextField.getText();
+            String triiodothyronineLevel = TriiodothyronineLevelTextField.getText();
+            String thyroxineLevel = ThyroxineLevelTextField.getText();
+
+            if (thyroidStimulatingHormoneLevel == null || thyroidStimulatingHormoneLevel.isEmpty() ||
+                triiodothyronineLevel == null || triiodothyronineLevel.isEmpty() ||
+                thyroxineLevel == null || thyroxineLevel.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please input all the required data for Thyroid Function Tests.", 
+                        "Missing Value", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            
+            // Initiate new record from user input
+            BloodTest newRecord = new BloodTest(
+                Double.parseDouble(whiteBloodCellCount),
+                Double.parseDouble(redBloodCellCount),
+                Double.parseDouble(hemoglobinLevel),
+                Double.parseDouble(hematocritLevel),
+                Double.parseDouble(plateletCount),
+                Double.parseDouble(fastingBloodGlucoseLevel),
+                Double.parseDouble(creatinineLevel),
+                Double.parseDouble(bloodUreaNitrogenLevel),
+                Double.parseDouble(calciumLevel),
+                Double.parseDouble(potassiumLevel),
+                Double.parseDouble(sodiumLevel),
+                Double.parseDouble(cholesterolLevel),
+                Double.parseDouble(triglyceridesLevel),
+                Double.parseDouble(aspartateAminotransferaseLevel),
+                Double.parseDouble(alanineAminotransferaseLevel),
+                Double.parseDouble(alkalinePhosphataseLevel),
+                Double.parseDouble(bilirubinLevel),
+                Double.parseDouble(thyroidStimulatingHormoneLevel),
+                Double.parseDouble(triiodothyronineLevel),
+                Double.parseDouble(thyroxineLevel),
+                doctorID
+            );
+            
+            // Encrypted the record before adding to blockchain
+            String encrypted = hrIO.encryptRecord(newRecord.toString());
+            
+            // Obtain the signature with doctor private key
+            String signedMsg = hrIO.signTransaction(encrypted, doctorID);
+            
+            // Add to Blockchain
+            BlockIO.addNewBlock(patientID, doctorID, "BloodTest", encrypted, signedMsg);
+            
+            // Add to patient's health record
+            DataIO.PatientIO.checkPatient(patientID).getMyHealthRecord().getBloodTests().add(newRecord);
+            
+            JOptionPane.showMessageDialog(null, "Blood Test Record created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            WhiteBloodCellCountTextField.setText("");
+            RedBloodCellCountTextField.setText("");
+            HemoglobinLevelTextField.setText("");
+            HematocritLevelTextField.setText("");
+            PlateletCountTextField.setText("");
+            FastingBloodGlucoseLevelTextField.setText("");
+            CreatinineLevelTextField.setText("");
+            BloodUreaNitrogenLevelTextField.setText("");
+            CalciumLevelTextField.setText("");
+            PotassiumLevelTextField.setText("");
+            SodiumLevelTextField.setText("");
+            CholesterolLevelTextField.setText("");
+            TriglyceridesLevelTextField.setText("");
+            AspartateAminotransferaseLevelTextField.setText("");
+            AlanineAminotransferaseLevelTextField.setText("");
+            AlkalinePhosphataseLevelTextField.setText("");
+            BilirubinLevelTextField.setText("");
+            ThyroidStimulatingHormoneLevelTextField.setText("");
+            TriiodothyronineLevelTextField.setText("");
+            ThyroxineLevelTextField.setText("");
+        } catch (Exception ex) {
+            System.out.println("Fail to add new record ...");
+        }
+    }//GEN-LAST:event_addBloodTestActionPerformed
+
+    private void addUrineTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUrineTestActionPerformed
+        try {
+            String patientID = UTPatientCom.getSelectedItem().toString();
+            // Check patient-doctor permission
+            if (!DataIO.PermissionIO.checkPermission(patientID, doctorID)) {
+                JOptionPane.showMessageDialog(null, "Permission to write not granted by the patient.", 
+                        "Missing Permission", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            
+            // For Urine Appearance & Composition section
+            String urineClarity = UrineClarityTextField.getText();
+            String urineColor = UrineColorTextField.getText();
+            String urinePH = UrinepHTextField.getText();
+            String urineSpecificGravity = UrineSpecificGravityTextField.getText();
+            
+            if (urineClarity == null || urineClarity.isEmpty() ||
+                urineColor == null || urineColor.isEmpty() ||
+                urinePH == null || urinePH.isEmpty() ||
+                urineSpecificGravity == null || urineSpecificGravity.isEmpty()) 
+            {
+                JOptionPane.showMessageDialog(null, "Please input all the required data for Urine Appearance & Composition.", 
+                        "Missing Value", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            
+            // For Urine Chemical Analysis section
+            String urineBilirubin = UrineBilirubinTextField.getText();
+            String urineBlood = UrineBloodTextField.getText();
+            String urineGlucose = UrineGlucoseTextField.getText();
+            String urineKetones = UrineKetonesTextField.getText();
+            String urineLeukocytes = UrineLeukocytesTextField.getText();
+            String urineNitrites = UrineNitritesTextField.getText();
+            String urineProtein = UrineProteinTextField.getText();
+            
+            if (urineBilirubin == null || urineBilirubin.isEmpty() ||
+                urineBlood == null || urineBlood.isEmpty() ||
+                urineGlucose == null || urineGlucose.isEmpty() ||
+                urineKetones == null || urineKetones.isEmpty() ||
+                urineLeukocytes == null || urineLeukocytes.isEmpty() ||
+                urineNitrites == null || urineNitrites.isEmpty() ||
+                urineProtein == null || urineProtein.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please input all the required data for Urine Chemical Analysis.", 
+                        "Missing Value", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            
+            // For Urine Biochemistry section
+            String urineAlbumin = UrineAlbuminTextField.getText();
+            String urineCalcium = UrineCalciumTextField.getText();
+            String urineCreatinine = UrineCreatinineTextField.getText();
+            String urineMagnesium = UrineMagnesiumTextField.getText();
+            String urineMicroalbumin = UrineMicroalbuminTextField.getText();
+            String urineOsmolality = UrineOsmolalityTextField.getText();
+            String urinePotassium = UrinePotassiumTextField.getText();
+            String urineSodium = UrineSodiumTextField.getText();
+            String urineUricAcid = UrineUricAcidTextField.getText();
+            if (urineAlbumin == null || urineAlbumin.isEmpty() ||
+                urineCalcium == null || urineCalcium.isEmpty() ||
+                urineCreatinine == null || urineCreatinine.isEmpty() ||
+                urineMagnesium == null || urineMagnesium.isEmpty() ||
+                urineMicroalbumin == null || urineMicroalbumin.isEmpty() ||
+                urineOsmolality == null || urineOsmolality.isEmpty() ||
+                urinePotassium == null || urinePotassium.isEmpty() ||
+                urineSodium == null || urineSodium.isEmpty() ||
+                urineUricAcid == null || urineUricAcid.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please input all the required data for Urine Biochemistry.", 
+                        "Missing Value", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            
+            // Initiate new record from user input
+            UrineTest newRecord = new UrineTest(
+                urineColor,
+                urineClarity,
+                Double.parseDouble(urineSpecificGravity),
+                Double.parseDouble(urinePH),
+                urineProtein,
+                urineGlucose,
+                urineKetones,
+                urineBilirubin,
+                urineBlood,
+                urineLeukocytes,
+                urineNitrites,
+                Double.parseDouble(urineCreatinine),
+                urineAlbumin,
+                urineMicroalbumin,
+                Double.parseDouble(urineOsmolality),
+                Double.parseDouble(urinePotassium),
+                Double.parseDouble(urineSodium),
+                Double.parseDouble(urineCalcium),
+                Double.parseDouble(urineMagnesium),
+                Double.parseDouble(urineUricAcid),
+                doctorID
+            );
+            
+            // Encrypted the record before adding to blockchain
+            String encrypted = hrIO.encryptRecord(newRecord.toString());
+            
+            // Obtain the signature with doctor private key
+            String signedMsg = hrIO.signTransaction(encrypted, doctorID);
+            
+            // Add to Blockchain
+            BlockIO.addNewBlock(patientID, doctorID, "UrineTest", encrypted, signedMsg);
+            
+            // Add to patient's health record
+            DataIO.PatientIO.checkPatient(patientID).getMyHealthRecord().getUrineTests().add(newRecord);
+            
+            JOptionPane.showMessageDialog(null, "Urine Test Record created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            UrineClarityTextField.setText("");
+            UrineColorTextField.setText("");
+            UrinepHTextField.setText("");
+            UrineSpecificGravityTextField.setText("");
+            UrineBilirubinTextField.setText("");
+            UrineBloodTextField.setText("");
+            UrineGlucoseTextField.setText("");
+            UrineKetonesTextField.setText("");
+            UrineLeukocytesTextField.setText("");
+            UrineNitritesTextField.setText("");
+            UrineProteinTextField.setText("");
+            UrineAlbuminTextField.setText("");
+            UrineCalciumTextField.setText("");
+            UrineCreatinineTextField.setText("");
+            UrineMagnesiumTextField.setText("");
+            UrineMicroalbuminTextField.setText("");
+            UrineOsmolalityTextField.setText("");
+            UrinePotassiumTextField.setText("");
+            UrineSodiumTextField.setText("");
+            UrineUricAcidTextField.setText("");
+        } catch (Exception ex) {
+            System.out.println("Fail to add new record ...");
+        }
+    }//GEN-LAST:event_addUrineTestActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2080,6 +2607,7 @@ public class AddHealthRecord extends javax.swing.JFrame {
     private javax.swing.JLabel AspartateAminotransferaseLevelLabel;
     private javax.swing.JTextField AspartateAminotransferaseLevelTextField;
     private javax.swing.JLabel AspartateAminotransferaseLevelUnitLabel;
+    private javax.swing.JComboBox<String> BTPatientCom;
     private javax.swing.JButton BackButton;
     private javax.swing.JPanel BasicMetabolicPanelPanel;
     private javax.swing.JLabel BilirubinLevelLabel;
@@ -2090,7 +2618,6 @@ public class AddHealthRecord extends javax.swing.JFrame {
     private javax.swing.JLabel BloodPressureUnitLabel;
     private javax.swing.JPanel BloodTestPanel;
     private javax.swing.JLabel BloodTestRecordedByLabel;
-    private javax.swing.JTextField BloodTestRecordedByTextField;
     private javax.swing.JTabbedPane BloodTestTabbedPane;
     private javax.swing.JLabel BloodTestTimestampLabel;
     private javax.swing.JTextField BloodTestTimestampTextField;
@@ -2113,9 +2640,8 @@ public class AddHealthRecord extends javax.swing.JFrame {
     private javax.swing.JTextField CreatinineLevelTextField;
     private javax.swing.JLabel CreatinineLevelUnitLabel;
     private javax.swing.JLabel DateOfHospitalizationLabel;
-    private javax.swing.JTextField DateOfHospitalizationTextField;
+    private com.toedter.calendar.JDateChooser DateOfVaccinationChooser;
     private javax.swing.JLabel DateOfVaccinationLabel;
-    private javax.swing.JTextField DateOfVaccinationTextField;
     private javax.swing.JLabel DischargeSummaryLabel;
     private javax.swing.JTextArea DischargeSummaryTextArea;
     private javax.swing.JLabel DosagesLabel;
@@ -2130,6 +2656,7 @@ public class AddHealthRecord extends javax.swing.JFrame {
     private javax.swing.JLabel FrequencyOfUseLabel;
     private javax.swing.JTextField FrequencyOfUseTextField;
     private javax.swing.JLabel FrequencyOfUseUnitLabel;
+    private javax.swing.JComboBox<String> HPPatientCom;
     private javax.swing.JLabel HealthRecordLabel;
     private javax.swing.JTabbedPane HealthRecordTabbedPane;
     private javax.swing.JLabel HeartRateLabel;
@@ -2146,21 +2673,20 @@ public class AddHealthRecord extends javax.swing.JFrame {
     private javax.swing.JLabel HemoglobinLevelUnitLabel;
     private javax.swing.JPanel HospitalizationPanel;
     private javax.swing.JLabel HospitalizationRecordedByLabel;
-    private javax.swing.JTextField HospitalizationRecordedByTextField;
     private javax.swing.JLabel HospitalizationTimestampLabel;
     private javax.swing.JTextField HospitalizationTimestampTextField;
     private javax.swing.JPanel LipidPanelPanel;
     private javax.swing.JPanel LiverFunctionTestsPanel;
+    private javax.swing.JComboBox<String> MHPatientCom;
+    private javax.swing.JComboBox<String> MIPatientCom;
     private javax.swing.JLabel MealRequirementLabel;
     private javax.swing.JTextField MealRequirementTextField;
     private javax.swing.JPanel MedicalHistoryPanel;
     private javax.swing.JLabel MedicalHistoryRecordedByLabel;
-    private javax.swing.JTextField MedicalHistoryRecordedByTextField;
     private javax.swing.JLabel MedicalHistoryTimestampLabel;
     private javax.swing.JTextField MedicalHistoryTimestampTextField;
     private javax.swing.JPanel MedicalInfoPanel;
     private javax.swing.JLabel MedicalInfoRecordedByLabel;
-    private javax.swing.JTextField MedicalInfoRecordedByTextField;
     private javax.swing.JLabel MedicalInfoTimestampLabel;
     private javax.swing.JTextField MedicalInfoTimestampTextField;
     private javax.swing.JLabel MedicationLabel;
@@ -2206,6 +2732,7 @@ public class AddHealthRecord extends javax.swing.JFrame {
     private javax.swing.JLabel TriiodothyronineLevelUnitLabel;
     private javax.swing.JLabel TypesOfImmunizationsLabel;
     private javax.swing.JTextField TypesOfImmunizationsTextField;
+    private javax.swing.JComboBox<String> UTPatientCom;
     private javax.swing.JLabel UrineAlbuminLabel;
     private javax.swing.JTextField UrineAlbuminTextField;
     private javax.swing.JLabel UrineAlbuminUnitLabel;
@@ -2261,7 +2788,6 @@ public class AddHealthRecord extends javax.swing.JFrame {
     private javax.swing.JTextField UrineSpecificGravityTextField;
     private javax.swing.JPanel UrineTestPanel;
     private javax.swing.JLabel UrineTestRecordedByLabel;
-    private javax.swing.JTextField UrineTestRecordedByTextField;
     private javax.swing.JTabbedPane UrineTestTabbedPane;
     private javax.swing.JLabel UrineTestTimestampLabel;
     private javax.swing.JTextField UrineTestTimestampTextField;
@@ -2271,14 +2797,14 @@ public class AddHealthRecord extends javax.swing.JFrame {
     private javax.swing.JLabel UrinepHLabel;
     private javax.swing.JTextField UrinepHTextField;
     private javax.swing.JLabel UrinepHUnitLabel;
+    private javax.swing.JComboBox<String> VCPatientCom;
+    private javax.swing.JComboBox<String> VSPatientCom;
     private javax.swing.JPanel VaccinationPanel;
     private javax.swing.JLabel VaccinationRecordedByLabel;
-    private javax.swing.JTextField VaccinationRecordedByTextField;
     private javax.swing.JLabel VaccinationTimestampLabel;
     private javax.swing.JTextField VaccinationTimestampTextField;
     private javax.swing.JPanel VitalSignsPanel;
     private javax.swing.JLabel VitalSignsRecordedByLabel;
-    private javax.swing.JTextField VitalSignsRecordedByTextField;
     private javax.swing.JLabel VitalSignsTimestampLabel;
     private javax.swing.JTextField VitalSignsTimestampTextField;
     private javax.swing.JLabel WeightLabel;
@@ -2287,13 +2813,14 @@ public class AddHealthRecord extends javax.swing.JFrame {
     private javax.swing.JLabel WhiteBloodCellCountLabel;
     private javax.swing.JTextField WhiteBloodCellCountTextField;
     private javax.swing.JLabel WhiteBloodCellCountUnitLabel;
+    private javax.swing.JButton addBloodTest;
+    private javax.swing.JButton addHospitalization;
     private javax.swing.JButton addMedicalHistory;
-    private javax.swing.JButton addMedicalHistory1;
-    private javax.swing.JButton addMedicalHistory2;
-    private javax.swing.JButton addMedicalHistory3;
-    private javax.swing.JButton addMedicalHistory5;
-    private javax.swing.JButton addMedicalHistory6;
+    private javax.swing.JButton addMedicalInfo;
+    private javax.swing.JButton addUrineTest;
+    private javax.swing.JButton addVaccination;
     private javax.swing.JButton addVitalSigns;
+    private com.toedter.calendar.JDateChooser dateOfHospitalizationChooser;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
