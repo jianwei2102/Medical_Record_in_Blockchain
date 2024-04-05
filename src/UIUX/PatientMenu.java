@@ -29,6 +29,7 @@ public class PatientMenu extends javax.swing.JFrame {
         MenuLabel = new javax.swing.JLabel();
         LogoutButton = new javax.swing.JButton();
         ViewHealthRecordButton = new javax.swing.JButton();
+        ManagePermissionButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,20 +52,29 @@ public class PatientMenu extends javax.swing.JFrame {
             }
         });
 
+        ManagePermissionButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        ManagePermissionButton.setText("Manage Permission");
+        ManagePermissionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ManagePermissionButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ViewHealthRecordButton, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(196, 196, 196)
-                            .addComponent(MenuLabel))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(143, 143, 143)
-                            .addComponent(LogoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(196, 196, 196)
+                        .addComponent(MenuLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ViewHealthRecordButton, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LogoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ManagePermissionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(174, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -72,9 +82,11 @@ public class PatientMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(MenuLabel)
-                .addGap(31, 31, 31)
+                .addGap(62, 62, 62)
                 .addComponent(ViewHealthRecordButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
+                .addGap(60, 60, 60)
+                .addComponent(ManagePermissionButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                 .addComponent(LogoutButton)
                 .addGap(51, 51, 51))
         );
@@ -97,6 +109,13 @@ public class PatientMenu extends javax.swing.JFrame {
         viewHealthRecord.setVisible(true);
         dispose();
     }//GEN-LAST:event_ViewHealthRecordButtonActionPerformed
+
+    private void ManagePermissionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManagePermissionButtonActionPerformed
+        // TODO add your handling code here:
+        Permission permission = new Permission();
+        permission.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_ManagePermissionButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -135,6 +154,7 @@ public class PatientMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LogoutButton;
+    private javax.swing.JButton ManagePermissionButton;
     private javax.swing.JLabel MenuLabel;
     private javax.swing.JButton ViewHealthRecordButton;
     // End of variables declaration//GEN-END:variables

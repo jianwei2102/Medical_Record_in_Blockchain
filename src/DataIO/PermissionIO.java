@@ -1,7 +1,6 @@
 package DataIO;
 
 import Classes.Permission;
-import java.util.Iterator;
 import static DataIO.DataIO.allPermission;
 
 public class PermissionIO {
@@ -23,7 +22,6 @@ public class PermissionIO {
             allPermission.add(new Permission(patientID, doctorID));
             DataIO.writeToFile();
         }
-        // Else?
     }
     
     // Remove permission
@@ -32,6 +30,5 @@ public class PermissionIO {
             allPermission.removeIf(p -> p.getPatientID().equals(patientID) && p.getDoctorID().equals(doctorID));
             DataIO.writeToFile();
         }
-        // Else?
     }
 }

@@ -9,6 +9,12 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.PatternSyntaxException;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 public class DataIO {
     public static ArrayList<Patient> allPatient = new ArrayList<>();
@@ -97,11 +103,23 @@ public class DataIO {
             PrintWriter pPermission = new PrintWriter("permission.txt");
             for(Permission p : allPermission) {
                 //String patientID, String doctorID
-                pPermission.println(p.getPatientID()+";"+p.getPatientID());
+                pPermission.println(p.getPatientID()+";"+p.getDoctorID());
             }
             pPermission.close();
         }catch(FileNotFoundException e){
             System.out.println("PrintWriter error...");
+        }
+    }
+     
+     public static void tableSearchId(JTable table, String id, int colno){
+        try {
+            DefaultTableModel display = (DefaultTableModel)table.getModel(); // Get table model
+            TableRowSorter<DefaultTableModel> resultRow = new TableRowSorter<>(display); // Create table row sorter object
+            resultRow.setRowFilter(RowFilter.regexFilter(id, colno)); // Check inputted string with the 1st column of the table
+            table.setRowSorter(resultRow); // Set results from the filter to table
+        }
+        catch (PatternSyntaxException ex){
+            JOptionPane.showMessageDialog(null, "Only enter numbers or letters!", "Error", JOptionPane.ERROR_MESSAGE);                
         }
     }
 }
