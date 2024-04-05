@@ -1,8 +1,10 @@
 package blockchain;
 
 import com.google.gson.GsonBuilder;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.LinkedList;
@@ -35,12 +37,23 @@ public class Blockchain {
     }
     
     public LinkedList<Block> get() {
-        try( FileInputStream fin = new FileInputStream( this.chainFile );   
-            ObjectInputStream in = new ObjectInputStream( fin );
-                ) {
-            return ( LinkedList<Block> )in.readObject();
-        } catch ( Exception e ) {
-            e.printStackTrace();
+        try {
+            // Check if the file exists
+            File file = new File(this.chainFile);
+
+            if (!file.exists()) {
+                file.createNewFile();
+                genesis();
+            } 
+            
+            try (FileInputStream fin = new FileInputStream(file);
+                ObjectInputStream in = new ObjectInputStream(fin)) {
+                return (LinkedList<Block>) in.readObject();
+            } catch (Exception e) {
+                return null;
+            }
+            
+        } catch (IOException ex) {
             return null;
         }
     }
