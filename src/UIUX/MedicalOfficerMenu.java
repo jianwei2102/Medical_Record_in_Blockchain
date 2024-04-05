@@ -4,6 +4,9 @@
  */
 package UIUX;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author xiuha
@@ -111,9 +114,13 @@ public class MedicalOfficerMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_LogoutButtonActionPerformed
 
     private void AddNewDoctorButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNewDoctorButton1ActionPerformed
-        VerifyTransaction verifyTransaction = new VerifyTransaction();
-        verifyTransaction.setVisible(true);
-        dispose();
+        try {
+            VerifyTransaction verifyTransaction = new VerifyTransaction();
+            verifyTransaction.setVisible(true);
+            dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(MedicalOfficerMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_AddNewDoctorButton1ActionPerformed
 
     /**

@@ -193,8 +193,8 @@ public class VerifyTransaction extends javax.swing.JFrame {
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         // TODO add your handling code here:
-        DoctorMenu doctorMenu = new DoctorMenu();
-        doctorMenu.setVisible(true);
+        MedicalOfficerMenu medicalOfficerMenu = new MedicalOfficerMenu();
+        medicalOfficerMenu.setVisible(true);
         dispose();
     }//GEN-LAST:event_BackButtonActionPerformed
 
