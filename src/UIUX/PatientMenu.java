@@ -112,7 +112,7 @@ public class PatientMenu extends javax.swing.JFrame {
 
     private void ManagePermissionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManagePermissionButtonActionPerformed
         // TODO add your handling code here:
-        Permission permission = new Permission();
+        ManagePermission permission = new ManagePermission();
         permission.setVisible(true);
         dispose();
     }//GEN-LAST:event_ManagePermissionButtonActionPerformed

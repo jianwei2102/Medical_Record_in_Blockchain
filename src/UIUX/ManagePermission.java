@@ -1,33 +1,15 @@
 
 package UIUX;
 
-import Classes.Patient;
-import Classes.BloodTest;
 import Classes.Doctor;
-import Classes.HealthRecord;
-import Classes.Hospitalization;
-import Classes.MedicalHistory;
-import Classes.MedicalInformation;
-import Classes.UrineTest;
-import Classes.Vaccination;
-import Classes.VitalSign;
-import DataIO.BlockIO;
-import java.util.ArrayList;
-import DataIO.HealthRecordIO;
 import bcd.BCD;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Date;
-import java.util.concurrent.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import static DataIO.DataIO.allPermission;
 import static DataIO.DataIO.allDoctor;
 
-public class Permission extends javax.swing.JFrame {
+public class ManagePermission extends javax.swing.JFrame {
     
-    public Permission() {
+    public ManagePermission() {
         initComponents();
     }
     
@@ -143,6 +125,11 @@ public class Permission extends javax.swing.JFrame {
         HealthRecordLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         HealthRecordLabel2.setText("Selected Doctor ID");
 
+        searchTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchTextFieldActionPerformed(evt);
+            }
+        });
         searchTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 searchTextFieldKeyPressed(evt);
@@ -280,6 +267,10 @@ public class Permission extends javax.swing.JFrame {
     loadPermission();
     }//GEN-LAST:event_formComponentShown
 
+    private void searchTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchTextFieldActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -297,14 +288,18 @@ public class Permission extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Permission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagePermission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Permission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagePermission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Permission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagePermission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Permission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagePermission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -314,7 +309,7 @@ public class Permission extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new Permission().setVisible(true);
+                    new ManagePermission().setVisible(true);
                 } catch (Exception ex) {
                     System.out.println("Unable to add record ..");
                 }

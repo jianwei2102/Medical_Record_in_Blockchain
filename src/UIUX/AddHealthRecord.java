@@ -6,7 +6,6 @@ package UIUX;
 
 import Classes.Patient;
 import Classes.BloodTest;
-import Classes.HealthRecord;
 import Classes.Hospitalization;
 import Classes.MedicalHistory;
 import Classes.MedicalInformation;
@@ -14,7 +13,6 @@ import Classes.UrineTest;
 import Classes.Vaccination;
 import Classes.VitalSign;
 import DataIO.BlockIO;
-import java.util.ArrayList;
 import DataIO.HealthRecordIO;
 import bcd.BCD;
 import java.text.SimpleDateFormat;

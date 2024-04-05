@@ -29,6 +29,7 @@ public class MedicalOfficerMenu extends javax.swing.JFrame {
         MenuLabel = new javax.swing.JLabel();
         AddNewDoctorButton = new javax.swing.JButton();
         LogoutButton = new javax.swing.JButton();
+        AddNewDoctorButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,6 +53,14 @@ public class MedicalOfficerMenu extends javax.swing.JFrame {
             }
         });
 
+        AddNewDoctorButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        AddNewDoctorButton1.setText("Verify Transaction");
+        AddNewDoctorButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddNewDoctorButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -65,7 +74,8 @@ public class MedicalOfficerMenu extends javax.swing.JFrame {
                         .addGap(128, 128, 128)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(LogoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AddNewDoctorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(AddNewDoctorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AddNewDoctorButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(137, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -73,9 +83,11 @@ public class MedicalOfficerMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(MenuLabel)
-                .addGap(18, 18, 18)
+                .addGap(48, 48, 48)
                 .addComponent(AddNewDoctorButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 192, Short.MAX_VALUE)
+                .addGap(61, 61, 61)
+                .addComponent(AddNewDoctorButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addComponent(LogoutButton)
                 .addGap(50, 50, 50))
         );
@@ -97,6 +109,12 @@ public class MedicalOfficerMenu extends javax.swing.JFrame {
         login.setVisible(true);
         dispose();
     }//GEN-LAST:event_LogoutButtonActionPerformed
+
+    private void AddNewDoctorButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNewDoctorButton1ActionPerformed
+        VerifyTransaction verifyTransaction = new VerifyTransaction();
+        verifyTransaction.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_AddNewDoctorButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -135,6 +153,7 @@ public class MedicalOfficerMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddNewDoctorButton;
+    private javax.swing.JButton AddNewDoctorButton1;
     private javax.swing.JButton LogoutButton;
     private javax.swing.JLabel MenuLabel;
     // End of variables declaration//GEN-END:variables

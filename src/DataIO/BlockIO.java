@@ -41,7 +41,7 @@ public class BlockIO implements Serializable {
         bc.nextBlock(newBlock);
         bc.distribute();
         
-        allVerification.add(new Verification(doctorID, patientID, newBlock.getHeader().getCurrentHash(), 
+        allVerification.add(new Verification(previousIndex+1, doctorID, patientID, newBlock.getHeader().getCurrentHash(), 
                 encryptedRecord, signatureMessage));
     }
     
@@ -100,7 +100,7 @@ public class BlockIO implements Serializable {
                 }
                 
                 // Add to all veridication
-                allVerification.add(new Verification(block.getTranxList().getDoctorID(), patientID, 
+                allVerification.add(new Verification(block.getHeader().getIndex(), block.getTranxList().getDoctorID(), patientID, 
                         block.getHeader().getCurrentHash(), encryptedRecord, block.getTranxList().getSignatureMessage()));
             }
         }
